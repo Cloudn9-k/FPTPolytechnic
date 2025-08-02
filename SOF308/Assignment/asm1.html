@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>Energy Pilates - Blog Của Tôi</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="Lab1 - Tài Nguyên/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-primary-subtle">
+        <div class="container-fluid">
+            <img src="Lab1 - Tài Nguyên/images/logo-energy-pilates.png" alt="Energy Pilates Logo"
+                style="height: 40px;" />
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"
+                aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#article-section"><i
+                                class="fa-solid fa-list me-1"></i>
+                            Bài
+                            viết</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-film me-1"></i> Video</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-circle-info me-1"></i> Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-calendar-days me-1"></i> Sự kiện</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-user me-1"></i> Tài khoản
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#accountModal"
+                                    data-tab-id="login">Đăng nhập</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#accountModal"
+                                    data-tab-id="forgot-password">Quên mật khẩu</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#accountModal"
+                                    data-tab-id="register">Đăng ký thành viên</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav d-flex">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tiếng Việt</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tiếng Anh</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid p-0">
+        <img src="Lab1 - Tài Nguyên/images/banner1.jpg" class="img-fluid w-100" alt="Energy Pilates Banner">
+    </div>
+    <section class="row">
+        <aside class="col-sm-4 p-5 pe-2">
+            <h2 class="text-info mb-3">Về tôi</h2>
+            <div class="card blog bg-light">
+                <img src="Lab1 - Tài Nguyên/images/avatar.png" class="card-img-top" alt="Avatar của Ts. Trần Hoàng" />
+                <div class="card-body">
+                    <h5 class="card-title">Giới thiệu bản thân</h5>
+                    <p class="card-text">
+                        Ts. Trần Hoàng, Tổ chức Tư vấn sức khỏe quốc tế độc lập <br />
+                        châm ngôn: Ta không được chọn nơi mình sinh ra, nhưng ta được chọn
+                        cách mình sẽ sốngß
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="text-info mt-2">Chuyên mục</h3>
+            <ul class="list-group">
+                <li
+                    class="list-group-item d-flex justify-content-between align-items-center list-group-item-action active">
+                    <a class="nav-link" href="#">Chế độ tập</a>
+                    <span class="badge bg-primary rounded-pill">12</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                    <a class="nav-link" href="#">Chế độ dinh dưỡng</a>
+                    <span class="badge bg-primary rounded-pill">15</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                    <a class="nav-link" href="#">Cẩm nang cuộc sống</a>
+                    <span class="badge bg-primary rounded-pill">99</span>
+                </li>
+            </ul>
+
+            <div class="card col-md-12 p-0 mt-2">
+                <div class="card-header">
+                    <h5>
+                        <strong class="text-info">Bài viết nổi bật
+                        </strong>
+                    </h5>
+                </div>
+                <div class="post-item card mb-3 border-0" tabindex="0" id="featured-article-1">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-4 col-sm-3 col-md-4 col-lg-3 d-flex justify-content-center">
+                            <div class="square-img-wrapper small-img">
+                                <img src="" class="img-fluid rounded-circle" alt="" id="featured-img-1" />
+                            </div>
+                        </div>
+                        <div class="col-8 col-sm-9 col-md-8 col-lg-9">
+                            <div class="card-body py-2 ps-2">
+                                <div class="post-title fw-bold" id="featured-title-1"></div>
+                                <p id="featured-desc-1"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-item card mb-3 border-0" tabindex="0" id="featured-article-2">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-4 col-sm-3 col-md-4 col-lg-3 d-flex justify-content-center">
+                            <div class="square-img-wrapper small-img">
+                                <img src="" class="img-fluid rounded-circle" alt="" id="featured-img-2" />
+                            </div>
+                        </div>
+                        <div class="col-8 col-sm-9 col-md-8 col-lg-9">
+                            <div class="card-body py-2 ps-2">
+                                <div class="post-title fw-bold" id="featured-title-2"></div>
+                                <p id="featured-desc-2"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-item card mb-3 border-0" tabindex="0" id="featured-article-3">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-4 col-sm-3 col-md-4 col-lg-3 d-flex justify-content-center">
+                            <div class="square-img-wrapper small-img">
+                                <img src="" class="img-fluid rounded-circle" alt="" id="featured-img-3" />
+                            </div>
+                        </div>
+                        <div class="col-8 col-sm-9 col-md-8 col-lg-9">
+                            <div class="card-body py-2 ps-2">
+                                <div class="post-title fw-bold" id="featured-title-3"></div>
+                                <p id="featured-desc-3"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <article class="col-lg-8 p-5 ps-2" id="article-section">
+            <div class="container mt-5" id="article-list-section">
+                <h2 class="mb-4 text-info">Tất cả bài viết</h2>
+                <div class="row g-4 mb-5" id="article-list">
+                </div>
+                <nav aria-label="Page navigation" class="d-flex justify-content-center">
+                    <ul class="pagination" id="pagination-controls">
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="container mt-5" id="article-detail-section" style="display: none;">
+                <button class="btn btn-secondary mb-4" id="back-to-list-btn">
+                    <i class="fas fa-arrow-left me-2"></i> Quay lại danh sách
+                </button>
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h3 class="card-title mb-0" id="detail-article-title"></h3>
+                    </div>
+                    <div class="article-img-container">
+                        <img id="detail-article-image" src="" alt="" class="img-fluid">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text" id="detail-article-content"></p>
+                    </div>
+                    <div class="comment-section" id="detail-comment-section">
+                        <div class="comment-input-wrapper mt-3">
+                            <img src="Lab1 - Tài Nguyên/images/avatar.png" alt="Your Avatar" class="comment-avatar">
+                            <input type="text" class="form-control me-2" placeholder="Viết bình luận của bạn..."
+                                id="comment-input">
+                            <button class="btn btn-primary" id="post-comment-btn">Gửi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">ß
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="Lab1 - Tài Nguyên/images/banner1.jpg" class="d-block w-100"
+                alt="Khám phá bí quyết Ăn Sạch Sống Khoẻ">
+        </div>
+        <div class="carousel-item">
+            <img src="Lab1 - Tài Nguyên/images/banner2.jpg" class="d-block w-100"
+                alt="Lớp học Pilates trực tuyến">
+        </div>
+        <div class="carousel-item">
+            <img src="Lab1 - Tài Nguyên/images/banner3.jpg" class="d-block w-100"
+                alt="Tập luyện hiệu quả tại nhà cùng chuyên gia">
+        </div>
+    </div>
+</div>
+
+    <footer class="row bg-dark p-3 text-white text-center">
+        <div class="container">
+            <p class="mb-0">Copyright © Trường Cao đẳng FPT Polytechnic</p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="accountModalLabel">Quản lý tài khoản</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" role="tablist" id="accountTabs">
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#register">
+                                Đăng ký
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#login">
+                                Đăng nhập
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#forgot-password">
+                                Quên mật khẩu
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content border">
+                        <div class="tab-pane fade" id="register">
+                            <form action="">
+                                <div class="mb-3">
+                                    <label for="regFullName">Họ tên</label>
+                                    <input type="text" class="form-control" id="regFullName" placeholder="Nhập họ tên">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="regEmail">Email</label>
+                                    <input type="email" class="form-control" id="regEmail" placeholder="Nhập email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="regPhone">SĐT</label>
+                                    <input type="tel" class="form-control" id="regPhone" placeholder="Nhập SĐT">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="regPassword">Mật khẩu</label>
+                                    <input type="password" class="form-control" id="regPassword"
+                                        placeholder="Nhập mật khẩu">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="regConfirmPassword">Xác nhận mật khẩu</label>
+                                    <input type="password" class="form-control" id="regConfirmPassword"
+                                        placeholder="Nhập xác nhận">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="regGender">Giới tính</label>
+                                    <input type="text" class="form-control" id="regGender" placeholder="Nhập giới tính">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="regLanguage">Ngôn ngữ</label>
+                                    <select name="" id="regLanguage" class="form-select">
+                                        <option selected>Tiếng Anh</option>
+                                        <option>Tiếng Việt</option>
+                                    </select>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input type="checkbox" class="form-check-input" id="regAgree">
+                                    <label for="regAgree" class="form-check-label">Tôi đồng ý với các điều khoản</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Đăng ký</button>
+                            </form>
+                        </div>
+                        <div id="login" class="tab-pane fade show active">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="loginEmail">Email</label>
+                                    <input type="email" class="form-control" id="loginEmail" placeholder="Nhập email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="loginPassword">Mật khẩu</label>
+                                    <input type="password" class="form-control" id="loginPassword"
+                                        placeholder="Nhập mật khẩu">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                            </form>
+                        </div>
+                        <div id="forgot-password" class="tab-pane fade">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="forgotEmail">Email</label>
+                                    <input type="email" class="form-control" id="forgotEmail"
+                                        placeholder="Nhập email đã đăng ký">
+                                </div>
+                                <button type="submit" class="btn btn-warning">Gửi yêu cầu</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="Lab1 - Tài Nguyên/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Dữ liệu mẫu cho các bài viết
+        const articles = [
+            {
+                id: 1,
+                title: "Phương pháp tập Pilates giúp phục hồi chấn thương cột sống",
+                commentsCount: 16,
+                image: "Lab1 - Tài Nguyên/images/tap-piltes.jpg", // Updated path and name
+                description: "Pilates là một phương pháp tập luyện toàn diện giúp tăng cường sức mạnh cốt lõi, cải thiện sự linh hoạt và cân bằng cơ thể. Đặc biệt, các bài tập Pilates được thiết kế một cách nhẹ nhàng nhưng hiệu quả, rất phù hợp cho những người đang gặp vấn đề về cột sống, giúp phục hồi và giảm đau lưng một cách tự nhiên. Phương pháp này tập trung vào việc củng cố các nhóm cơ sâu hỗ trợ cột sống, từ đó giảm áp lực lên các đĩa đệm và dây thần kinh. Với sự hướng dẫn đúng đắn, Pilates không chỉ giúp bạn giảm đau mà còn xây dựng nền tảng sức khỏe vững chắc cho một cột sống khỏe mạnh.",
+                comments: [
+                    { author: "Nguyễn Văn A", avatar: "https://i.pravatar.cc/32?img=1", text: "Bài viết rất hay và hữu ích! Mình đang tìm hiểu về phương pháp này.", time: "2 giờ trước" },
+                    { author: "Trần Thị B", avatar: "https://i.pravatar.cc/32?img=2", text: "Mình đã thử Pilates được 3 tháng và thấy đau lưng giảm hẳn. Cảm ơn bài viết đã chia sẻ thêm thông tin!", time: "1 giờ trước" },
+                    { author: "Lê Văn C", avatar: "https://i.pravatar.cc/32?img=3", text: "Có phòng tập nào uy tín ở Hà Nội không ạ?", time: "30 phút trước" }
+                ]
+            },
+            {
+                id: 2,
+                title: "Đây là những gì 1 giờ Tập Pilates có thể làm cho cơ thể của bạn",
+                commentsCount: 8,
+                image: "Lab1 - Tài Nguyên/images/corevalue.jpg", // Updated path and name
+                description: "Chỉ với 1 giờ tập Pilates mỗi ngày, bạn sẽ ngạc nhiên về những thay đổi tích cực mà cơ thể mình trải qua. Pilates không chỉ giúp đốt cháy calo và định hình vóc dáng, mà còn cải thiện đáng kể sức mạnh cơ bắp, đặc biệt là nhóm cơ cốt lõi. Sự linh hoạt, dẻo dai của cơ thể cũng sẽ được nâng cao, giúp bạn thực hiện các động tác hàng ngày một cách dễ dàng hơn và giảm nguy cơ chấn thương. Hơn nữa, Pilates còn có tác dụng thư giãn tinh thần, giảm stress và tăng cường sự tập trung, mang lại cảm giác sảng khoái sau mỗi buổi tập. Hãy thử và cảm nhận sự khác biệt!",
+                comments: [
+                    { author: "Phạm D", avatar: "https://i.pravatar.cc/32?img=4", text: "Tôi thích bài tập này! Cảm thấy khỏe khoắn hơn rất nhiều.", time: "30 phút trước" },
+                    { author: "Nguyễn E", avatar: "https://i.pravatar.cc/32?img=5", text: "Chắc phải thử ngay thôi!", time: "15 phút trước" }
+                ]
+            },
+            {
+                id: 3,
+                title: "Tập Pilates có thể cải thiện sức khỏe tim mạch của bạn",
+                commentsCount: 5,
+                image: "Lab1 - Tài Nguyên/images/tim-mach.jpg", // Updated path
+                description: "Mặc dù Pilates thường được biết đến với lợi ích về cơ bắp và sự linh hoạt, nhưng ít ai biết rằng nó cũng có tác động tích cực đến sức khỏe tim mạch. Các bài tập Pilates, đặc biệt là khi thực hiện với nhịp độ liên tục và kết hợp với hơi thở sâu, có thể nâng cao nhịp tim, cải thiện tuần hoàn máu và tăng cường sức bền cho hệ tim mạch. Điều này giúp giảm huyết áp, cải thiện chức năng mạch máu và giảm nguy cơ mắc các bệnh tim mạch. Hãy kết hợp Pilates vào chế độ tập luyện của bạn để có một trái tim khỏe mạnh hơn!",
+                comments: []
+            },
+            {
+                id: 4,
+                title: "EAT CLEAN: Nên và Không Nên Ăn Thực Phẩm Nào?",
+                commentsCount: 3,
+                image: "Lab1 - Tài Nguyên/images/eat-clean.png", // Updated path
+                description: "Chế độ ăn Eat Clean đang ngày càng trở nên phổ biến bởi những lợi ích tuyệt vời mà nó mang lại cho sức khỏe. Mục tiêu của Eat Clean là tiêu thụ các thực phẩm tươi, nguyên bản, không qua chế biến nhiều và tránh xa các chất phụ gia, đường hóa học, và chất béo không lành mạnh. Vậy những thực phẩm nào nên và không nên có trong thực đơn Eat Clean của bạn? Nên ăn nhiều rau xanh, trái cây tươi, protein nạc (như ức gà, cá, đậu), ngũ cốc nguyên hạt. Tránh xa đồ ăn nhanh, đồ ngọt, đồ uống có ga, và các sản phẩm chế biến sẵn. Lựa chọn đúng đắn sẽ giúp bạn có một cơ thể khỏe mạnh và tràn đầy năng lượng.",
+                comments: [
+                    { author: "Bạn", avatar: "https://i.pravatar.cc/32?img=6", text: "Cảm ơn vì những lời khuyên hữu ích! Mình sẽ áp dụng ngay.", time: "Vừa xong" }
+                ]
+            },
+            {
+                id: 5,
+                title: "10 Lợi ích không ngờ của Yoga đối với tinh thần",
+                commentsCount: 12,
+                image: "Lab1 - Tài Nguyên/images/tap-pilates1.jpg", // Updated path and name
+                description: "Yoga không chỉ là bài tập thể chất mà còn là phương pháp tuyệt vời giúp cải thiện sức khỏe tinh thần, giảm stress và tăng cường sự tập trung. Các động tác Yoga kết hợp với kỹ thuật thở sâu và thiền định giúp làm dịu hệ thần kinh, giảm lo âu và cải thiện tâm trạng. Thực hành Yoga thường xuyên giúp bạn tìm thấy sự bình yên nội tâm, nâng cao khả năng đối phó với áp lực cuộc sống và ngủ ngon hơn. Hãy dành thời gian cho Yoga mỗi ngày để nuôi dưỡng cả thể chất lẫn tinh thần.",
+                comments: [
+                    { author: "Minh", avatar: "https://i.pravatar.cc/32?img=7", text: "Tuyệt vời, Yoga giúp tôi thư giãn rất nhiều sau ngày làm việc căng thẳng.", time: "1 ngày trước" },
+                    { author: "Hạnh", avatar: "https://i.pravatar.cc/32?img=8", text: "Mình tập Yoga đã lâu và thấy tinh thần thoải mái hơn hẳn.", time: "2 ngày trước" }
+                ]
+            },
+            {
+                id: 6,
+                title: "Hướng dẫn tập luyện tại nhà hiệu quả chỉ với 30 phút",
+                commentsCount: 7,
+                image: "Lab1 - Tài Nguyên/images/tap-piltes.jpg", // Updated path and name
+                description: "Bạn bận rộn và không có thời gian đến phòng gym? Đừng lo lắng! Chỉ với 30 phút tập luyện tại nhà mỗi ngày, bạn vẫn có thể duy trì vóc dáng và sức khỏe tốt. Bài viết này sẽ hướng dẫn bạn các bài tập toàn thân đơn giản nhưng hiệu quả, không cần dụng cụ phức tạp. Bao gồm các động tác như squat, chống đẩy, plank, lunges, và cardio nhẹ. Điều quan trọng là duy trì đều đặn và thực hiện đúng kỹ thuật để tránh chấn thương. Hãy bắt đầu ngay hôm nay để thấy sự thay đổi!",
+                comments: [
+                    { author: "Khánh", avatar: "https://i.pravatar.cc/32?img=9", text: "Rất phù hợp với người bận rộn như mình. Cảm ơn ad!", time: "5 giờ trước" }
+                ]
+            },
+            {
+                id: 7,
+                title: "Bí quyết giảm cân an toàn và bền vững cho người bận rộn",
+                commentsCount: 10,
+                image: "Lab1 - Tài Nguyên/images/tap-piltes.jpg", // Updated path and name
+                description: "Giảm cân không phải là một cuộc đua mà là một hành trình cần sự kiên trì và phương pháp đúng đắn. Đối với người bận rộn, việc giảm cân an toàn và bền vững càng trở nên khó khăn. Bí quyết nằm ở việc kết hợp chế độ ăn uống khoa học và luyện tập hợp lý. Thay vì nhịn ăn khắt khe, hãy tập trung vào việc ăn uống đủ chất, tăng cường rau xanh, protein và giảm tinh bột xấu. Đồng thời, tận dụng thời gian rảnh để vận động, dù chỉ là đi bộ nhanh hay tập thể dục tại nhà. Sự kiên trì và lối sống lành mạnh sẽ mang lại kết quả lâu dài.",
+                comments: []
+            },
+            {
+                id: 8,
+                title: "Thực đơn dinh dưỡng cho người muốn tăng cơ bắp",
+                commentsCount: 9,
+                image: "Lab1 - Tài Nguyên/images/tap-piltes.jpg", // Updated path and name
+                description: "Để xây dựng cơ bắp săn chắc, việc tập luyện là chưa đủ, chế độ dinh dưỡng đóng vai trò vô cùng quan trọng. Một thực đơn hợp lý cần cung cấp đủ protein để phục hồi và phát triển cơ, đủ carbohydrate để cung cấp năng lượng cho buổi tập, và chất béo lành mạnh để hỗ trợ quá trình trao đổi chất. Hãy tập trung vào các nguồn protein chất lượng cao như ức gà, cá, trứng, thịt bò nạc, sữa chua. Kết hợp với khoai lang, gạo lứt, yến mạch để bổ sung carb phức tạp. Đừng quên các loại hạt và quả bơ cho chất béo tốt. Lên kế hoạch bữa ăn khoa học sẽ giúp bạn đạt được mục tiêu tăng cơ hiệu quả.",
+                comments: [
+                    { author: "Đức", avatar: "https://i.pravatar.cc/32?img=10", text: "Thực đơn này rất hữu ích, mình đang áp dụng và thấy hiệu quả rõ rệt.", time: "4 giờ trước" }
+                ]
+            },
+            {
+                id: 9,
+                title: "Làm thế nào để duy trì động lực tập luyện mỗi ngày?",
+                commentsCount: 4,
+                image: "Lab1 - Tài Nguyên/images/tap-piltes.jpg", // Updated path and name
+                description: "Động lực là yếu tố then chốt để duy trì thói quen tập luyện lâu dài. Ai cũng có lúc mất động lực, nhưng quan trọng là cách bạn vượt qua nó. Hãy đặt ra mục tiêu nhỏ và thực tế, theo dõi tiến độ của bản thân để thấy sự cải thiện. Tìm một người bạn tập cùng hoặc tham gia các lớp học để có thêm động lực. Thay đổi các bài tập để tránh nhàm chán. Quan trọng nhất, hãy lắng nghe cơ thể và đừng quá khắt khe với bản thân. Biến việc tập luyện thành một phần thú vị của cuộc sống, bạn sẽ duy trì được nó mỗi ngày.",
+                comments: []
+            },
+            {
+                id: 10,
+                title: "Vai trò của giấc ngủ đối với sức khỏe tổng thể",
+                commentsCount: 6,
+                image: "Lab1 - Tài Nguyên/images/tap-piltes.jpg", // Updated path and name
+                description: "Giấc ngủ chất lượng không chỉ giúp phục hồi năng lượng mà còn ảnh hưởng sâu sắc đến mọi khía cạnh của sức khỏe tổng thể. Khi bạn ngủ, cơ thể thực hiện các quá trình sửa chữa tế bào, củng cố hệ miễn dịch, và xử lý thông tin trong não bộ. Thiếu ngủ kéo dài có thể dẫn đến suy giảm nhận thức, tăng nguy cơ béo phì, bệnh tim mạch và tiểu đường. Đảm bảo ngủ đủ 7-9 giờ mỗi đêm, duy trì lịch ngủ đều đặn và tạo môi trường ngủ thoải mái sẽ giúp bạn có một cơ thể khỏe mạnh và tinh thần minh mẫn.",
+                comments: []
+            },
+            {
+                id: 11,
+                title: "Thực phẩm bổ sung: Có nên dùng hay không?",
+                commentsCount: 14,
+                image: "Lab1 - Tài Nguyên/images/tap-piltes.jpg", // Updated path and name
+                description: "Thực phẩm bổ sung là một chủ đề gây nhiều tranh cãi. Chúng có thể hỗ trợ đáng kể cho những người tập luyện cường độ cao hoặc có chế độ ăn uống thiếu hụt một số chất dinh dưỡng. Tuy nhiên, chúng không phải là giải pháp thần kỳ và không thể thay thế cho một chế độ ăn uống cân bằng và lối sống lành mạnh. Trước khi sử dụng bất kỳ loại thực phẩm bổ sung nào, hãy tìm hiểu kỹ về thành phần, liều lượng khuyến nghị và tham khảo ý kiến của chuyên gia dinh dưỡng hoặc bác sĩ. Sử dụng đúng cách, chúng có thể là một công cụ hữu ích để đạt được mục tiêu sức khỏe của bạn.",
+                comments: []
+            },
+            {
+                id: 12,
+                title: "Phòng tránh chấn thương khi tập gym",
+                commentsCount: 11,
+                image: "Lab1 - Tài Nguyên/images/tap-piltes.jpg", // Updated path and name
+                description: "Chấn thương là điều không ai mong muốn khi tập gym, nhưng nó lại khá phổ biến nếu bạn không cẩn thận. Để phòng tránh chấn thương, điều quan trọng nhất là khởi động kỹ trước khi tập và giãn cơ sau khi tập. Luôn luôn lắng nghe cơ thể và không cố gắng nâng tạ quá sức. Học hỏi kỹ thuật đúng cho từng bài tập và sử dụng trọng lượng phù hợp. Nếu bạn là người mới, hãy tìm sự hướng dẫn từ huấn luyện viên. Việc duy trì sự ổn định, kiểm soát chuyển động và không vội vàng sẽ giúp bạn tập luyện an toàn và hiệu quả, tránh được những chấn thương không đáng có.",
+                comments: []
+            }
+        ];
+
+        const articlesPerPage = 4; // Số bài viết mỗi trang
+        let currentPage = 1; // Trang hiện tại
+        let currentArticleId = null; // Biến để lưu ID bài viết đang được xem chi tiết
+
+        // Lấy references đến các element chính
+        const articleListSection = document.getElementById('article-list-section');
+        const articleDetailSection = document.getElementById('article-detail-section');
+        const backToListBtn = document.getElementById('back-to-list-btn');
+        const articleListContainer = document.getElementById('article-list');
+        const paginationControls = document.getElementById('pagination-controls');
+
+        const detailArticleTitle = document.getElementById('detail-article-title');
+        const detailArticleImage = document.getElementById('detail-article-image');
+        const detailArticleContent = document.getElementById('detail-article-content');
+        const detailCommentSection = document.getElementById('detail-comment-section');
+        const commentInput = document.getElementById('comment-input');
+        const postCommentBtn = document.getElementById('post-comment-btn');
+
+        // Lấy references đến modal và các tab
+        const accountModal = new bootstrap.Modal(document.getElementById('accountModal'));
+        const accountTabs = document.getElementById('accountTabs'); // ul element of tabs
+
+        // --- Hàm để lấy thời gian hiện tại dưới dạng dễ đọc ---
+        function getTimeAgo(date) {
+            const now = new Date();
+            const seconds = Math.round((now - date) / 1000);
+            const minutes = Math.round(seconds / 60);
+            const hours = Math.round(minutes / 60);
+            const days = Math.round(hours / 24);
+
+            if (seconds < 60) return "Vừa xong";
+            if (minutes < 60) return `${minutes} phút trước`;
+            if (hours < 24) return `${hours} giờ trước`;
+            return `${days} ngày trước`;
+        }
+
+        // --- Hàm hiển thị danh sách bài viết ---
+        function displayArticles(page) {
+            // Loại bỏ class 'show' khỏi các card hiện tại trước khi xóa
+            const currentCards = articleListContainer.querySelectorAll('.card');
+            currentCards.forEach(card => card.classList.remove('show'));
+
+            setTimeout(() => {
+                articleListContainer.innerHTML = ''; // Xóa các bài viết cũ
+                const startIndex = (page - 1) * articlesPerPage;
+                const endIndex = startIndex + articlesPerPage;
+                const articlesToDisplay = articles.slice(startIndex, endIndex);
+
+                articlesToDisplay.forEach((article, index) => {
+                    const articleCard = `
+                        <div class="col-lg-6 col-md-12">
+                            <div class="card shadow-sm">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">
+                                        <a href="#" class="article-title-link" data-article-id="${article.id}">${article.title}
+                                            <span class="comment-icon ms-2"><i class="far fa-comment"></i> ${article.comments.length}</span>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div class="article-img-container">
+                                    <img src="${article.image}" alt="${article.title}">
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">${article.description.substring(0, 150)}...</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    articleListContainer.insertAdjacentHTML('beforeend', articleCard);
+
+                    // Kích hoạt animation fade-in cho card mới sau một khoảng trễ
+                    const newCard = articleListContainer.lastElementChild.querySelector('.card');
+                    setTimeout(() => {
+                        newCard.classList.add('show');
+                    }, 100 * index);
+                });
+
+                // Gắn sự kiện click cho các tiêu đề bài viết
+                articleListContainer.querySelectorAll('.article-title-link').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault(); // Ngăn chặn chuyển hướng trang
+                        const articleId = parseInt(e.target.dataset.articleId);
+                        showArticleDetail(articleId);
+                    });
+                });
+
+            }, 300);
+        }
+
+        // --- Hàm để tạo các nút phân trang ---
+        function setupPagination() {
+            paginationControls.innerHTML = '';
+            const totalPages = Math.ceil(articles.length / articlesPerPage);
+
+            const prevButton = `
+                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" aria-label="Previous" data-page="${currentPage - 1}">
+                        <span aria-hidden="true">&larr;</span>
+                    </a>
+                </li>
+            `;
+            paginationControls.insertAdjacentHTML('beforeend', prevButton);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = `
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a class="page-link" href="#" data-page="${i}">${i}</a>
+                    </li>
+                `;
+                paginationControls.insertAdjacentHTML('beforeend', pageButton);
+            }
+
+            const nextButton = `
+                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                    <a class="page-link" href="#" aria-label="Next" data-page="${currentPage + 1}">
+                        <span aria-hidden="true">&rarr;</span>
+                    </a>
+                </li>
+            `;
+            paginationControls.insertAdjacentHTML('beforeend', nextButton);
+
+            paginationControls.querySelectorAll('.page-link').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const newPage = parseInt(e.target.dataset.page);
+                    if (newPage > 0 && newPage <= totalPages && newPage !== currentPage) {
+                        currentPage = newPage;
+                        displayArticles(currentPage);
+                        setupPagination();
+                        window.scrollTo({ top: 0, behavior: 'smooth' }); // Cuộn lên đầu trang
+                    }
+                });
+            });
+        }
+
+        // --- Hàm hiển thị chi tiết bài viết ---
+        function showArticleDetail(articleId) {
+            const article = articles.find(a => a.id === articleId);
+            if (!article) return;
+
+            currentArticleId = articleId; // Lưu ID bài viết đang xem
+
+            // Ẩn danh sách, hiện chi tiết
+            articleListSection.style.display = 'none';
+            articleDetailSection.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Cuộn lên đầu trang chi tiết
+
+            // Điền dữ liệu vào trang chi tiết
+            detailArticleTitle.textContent = article.title;
+            detailArticleImage.src = article.image;
+            detailArticleImage.alt = article.title; // Đặt alt cho ảnh
+            detailArticleContent.textContent = article.description;
+
+            renderComments(article);
+        }
+
+        // --- Hàm hiển thị bình luận cho bài viết chi tiết ---
+        function renderComments(article) {
+            // Xóa bình luận cũ (giữ lại phần input bình luận)
+            const commentInputWrapper = detailCommentSection.querySelector('.comment-input-wrapper');
+            const existingComments = detailCommentSection.querySelectorAll('.comment-item, p.text-muted');
+            existingComments.forEach(comment => comment.remove());
+
+            let commentsHtml = '';
+            if (article.comments.length > 0) {
+                // Đảo ngược thứ tự bình luận để bình luận mới nhất lên đầu
+                const sortedComments = [...article.comments].reverse();
+                commentsHtml = sortedComments.map(comment => `
+                    <div class="comment-item mb-2">
+                        <img src="${comment.avatar}" alt="${comment.author}" class="comment-avatar">
+                        <div class="comment-content-wrapper">
+                            <div class="comment-bubble">
+                                <span class="comment-author">${comment.author}</span>
+                                ${comment.text}
+                            </div>
+                            <div class="comment-actions">
+                                <a href="#" class="btn-link">Thích</a>
+                                <a href="#" class="btn-link">Trả lời</a>
+                                <span class="comment-time">${comment.time}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                commentsHtml = '<p class="text-muted text-center mt-3">Chưa có bình luận nào.</p>';
+            }
+            // Thêm các bình luận vào trước phần input bình luận
+            commentInputWrapper.insertAdjacentHTML('beforebegin', commentsHtml);
+        }
+
+        // --- Xử lý sự kiện gửi bình luận ---
+        postCommentBtn.addEventListener('click', () => {
+            const commentText = commentInput.value.trim();
+            if (commentText === '') {
+                alert('Vui lòng nhập bình luận của bạn.');
+                return;
+            }
+
+            const article = articles.find(a => a.id === currentArticleId);
+            if (article) {
+                const newComment = {
+                    author: "Bạn", // Tên mặc định cho người dùng gửi bình luận
+                    avatar: "Lab3 - Tài Nguyên/images/avatar.png", // Avatar mặc định
+                    text: commentText,
+                    time: "Vừa xong" // Để đơn giản, có thể cải tiến để hiển thị thời gian chính xác
+                };
+                article.comments.push(newComment);
+                article.commentsCount = article.comments.length; // Cập nhật số lượng bình luận
+
+                renderComments(article); // Hiển thị lại danh sách bình luận
+                commentInput.value = ''; // Xóa nội dung input
+            }
+        });
+
+        // --- Sự kiện quay lại danh sách ---
+        backToListBtn.addEventListener('click', () => {
+            articleDetailSection.style.display = 'none';
+            articleListSection.style.display = 'block';
+            currentArticleId = null; // Reset ID bài viết đang xem
+            // Có thể cần cập nhật lại số lượng bình luận trên danh sách bài viết nếu cần
+            displayArticles(currentPage); // Tải lại danh sách để cập nhật commentsCount
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Cuộn lên đầu trang
+        });
+
+        // --- Hàm để điền dữ liệu cho "Bài viết nổi bật" ---
+        function populateFeaturedArticles() {
+            // Lấy 3 bài viết đầu tiên làm nổi bật
+            const featuredArticlesData = articles.slice(0, 3);
+
+            featuredArticlesData.forEach((article, index) => {
+                const idx = index + 1;
+                const imgElement = document.getElementById(`featured-img-${idx}`);
+                const titleElement = document.getElementById(`featured-title-${idx}`);
+                const descElement = document.getElementById(`featured-desc-${idx}`);
+                const featuredCard = document.getElementById(`featured-article-${idx}`);
+
+                if (imgElement) {
+                    imgElement.src = article.image;
+                    imgElement.alt = article.title;
+                }
+                if (titleElement) titleElement.textContent = article.title;
+                if (descElement) descElement.textContent = article.description.substring(0, 50) + '...'; // 50 ký tự đầu + ...
+
+                // Gắn sự kiện click cho các card bài viết nổi bật để xem chi tiết
+                if (featuredCard) {
+                    featuredCard.addEventListener('click', () => showArticleDetail(article.id));
+                }
+            });
+        }
+
+        // --- Xử lý sự kiện khi modal tài khoản được hiển thị ---
+        document.getElementById('accountModal').addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget; // Nút đã kích hoạt modal
+            const tabId = button.getAttribute('data-tab-id'); // Lấy ID tab từ thuộc tính data-tab-id
+
+            // Nếu có tabId, kích hoạt tab tương ứng
+            if (tabId) {
+                const tabTriggerEl = accountTabs.querySelector(`a[href="#${tabId}"]`);
+                if (tabTriggerEl) {
+                    const tab = new bootstrap.Tab(tabTriggerEl);
+                    tab.show();
+                }
+            }
+        });
+
+
+        // Khởi tạo trang khi tải
+        document.addEventListener('DOMContentLoaded', () => {
+            displayArticles(currentPage);
+            setupPagination();
+            populateFeaturedArticles(); // Gọi hàm này để điền dữ liệu cho bài viết nổi bật
+
+            // Xử lý cuộn mượt khi click vào link "Bài viết" trên Navbar
+            document.querySelector('a[href="#article-section"]').addEventListener('click', function (e) {
+                e.preventDefault(); // Ngăn chặn hành vi mặc định của link
+                document.getElementById('article-section').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
