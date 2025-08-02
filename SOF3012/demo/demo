@@ -1,0 +1,27 @@
+create database demo 
+use demo 
+GO
+
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY IDENTITY(1,1),
+    FirstName NVARCHAR(50),
+    LastName NVARCHAR(50),
+    Email NVARCHAR(100),
+    PhoneNumber NVARCHAR(20),
+    Address NVARCHAR(200),
+    City NVARCHAR(100),
+    Country NVARCHAR(100),
+    PostalCode NVARCHAR(20),
+    DateOfBirth DATE,
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    IsActive BIT DEFAULT 1,
+    Gender NVARCHAR(10),
+    Notes NVARCHAR(MAX)
+);
+INSERT INTO Customers (FirstName, LastName, Email, PhoneNumber, Address, City, Country, PostalCode, DateOfBirth, Gender, Notes)
+VALUES 
+(N'Nguyen', N'Van A', N'vana@example.com', N'0901234567', N'123 Lê Lợi', N'Hà Nội', N'Việt Nam', N'100000', '1990-01-01', N'Nam', N'Khách hàng thân thiết'),
+(N'Tran', N'Thi B', N'thib@example.com', N'0912345678', N'456 Nguyễn Huệ', N'TP.HCM', N'Việt Nam', N'700000', '1992-05-15', N'Nữ', N'Gọi lại sau 5h chiều'),
+(N'Le', N'Van C', N'vanc@example.com', N'0933456789', N'789 Trần Hưng Đạo', N'Đà Nẵng', N'Việt Nam', N'550000', '1985-10-10', N'Nam', N''),
+(N'Pham', N'Thi D', N'thid@example.com', N'0944567890', N'321 Pasteur', N'Cần Thơ', N'Việt Nam', N'900000', '2000-03-22', N'Nữ', N'Yêu cầu gửi báo giá'),
+(N'Hoang', N'Van E', N'vane@example.com', N'0955678901', N'654 Hai Bà Trưng', N'Hải Phòng', N'Việt Nam', N'180000', '1995-12-30', N'Nam', N'VIP');
