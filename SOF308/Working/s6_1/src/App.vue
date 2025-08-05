@@ -1,4 +1,6 @@
 <script setup>
+import Bai2 from './components/Bai2.vue';
+import Bai3 from './components/Bai3.vue';
 import DemoVfor from './components/demoVfor.vue';
 import ElseIf from './components/ElseIf.vue';
 import HelloWorld from './components/HelloWorld.vue'
@@ -13,6 +15,8 @@ import VShoww from './components/vShoww.vue';
   <VShoww></VShoww>
   <LuyenTap6></LuyenTap6>
   <DemoVfor></DemoVfor>
+  <Bai2></Bai2>
+  <Bai3></Bai3>
 </template>
 
 <style scoped>

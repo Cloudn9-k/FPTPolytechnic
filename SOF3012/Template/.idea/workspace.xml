@@ -9,7 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01f7c6ad-3940-45a5-abe1-2245938f01ca" name="Changes" comment="" />
+    <list default="true" id="01f7c6ad-3940-45a5-abe1-2245938f01ca" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/module/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/module/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Template-1.0-SNAPSHOT/WEB-INF/classes/com/example/module/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Template-1.0-SNAPSHOT/WEB-INF/classes/com/example/module/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Template-1.0-SNAPSHOT/WEB-INF/classes/com/example/repo/ProductRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Template-1.0-SNAPSHOT/WEB-INF/classes/com/example/repo/ProductRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/module/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/module/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/repo/ProductRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/repo/ProductRepo.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +30,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -53,7 +64,9 @@
     &quot;Application.Hibernate.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;Tomcat Server.Tomcat 10.1.43.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -93,6 +106,7 @@
       </method>
     </configuration>
     <configuration name="Tomcat 10.1.43" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.43" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/TH03591-revived/" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="Template:war exploded">
@@ -294,6 +308,12 @@
       <workItem from="1754056477778" duration="1317000" />
       <workItem from="1754060345182" duration="6638000" />
       <workItem from="1754112653364" duration="1913000" />
+      <workItem from="1754186306866" duration="428000" />
+      <workItem from="1754189121836" duration="1854000" />
+      <workItem from="1754304072205" duration="2537000" />
+      <workItem from="1754355346037" duration="47000" />
+      <workItem from="1754355791389" duration="236000" />
+      <workItem from="1754359172046" duration="31000" />
     </task>
     <servers />
   </component>

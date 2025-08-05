@@ -9,7 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6c82939-6b4a-4fe4-976d-6a86228ef243" name="Changes" comment="" />
+    <list default="true" id="c6c82939-6b4a-4fe4-976d-6a86228ef243" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Template/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Template/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Template/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Template/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Template/src/main/java/com/example/module/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Template/src/main/java/com/example/module/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Template/target/Template-1.0-SNAPSHOT/WEB-INF/classes/com/example/module/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Template/target/Template-1.0-SNAPSHOT/WEB-INF/classes/com/example/module/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Template/target/Template-1.0-SNAPSHOT/WEB-INF/classes/com/example/repo/ProductRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Template/target/Template-1.0-SNAPSHOT/WEB-INF/classes/com/example/repo/ProductRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Template/target/classes/com/example/module/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Template/target/classes/com/example/module/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Template/target/classes/com/example/repo/ProductRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Template/target/classes/com/example/repo/ProductRepo.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +29,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -47,24 +58,25 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;TomEE Server.Tomcat 10.1.43.executor&quot;: &quot;Run&quot;,
-    &quot;TomEE Server.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat Server.Tomcat 10.1.43.executor&quot;: &quot;Run&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "TomEE Server.Tomcat 10.1.43.executor": "Run",
+    "TomEE Server.Unnamed.executor": "Run",
+    "Tomcat Server.Tomcat 10.1.43.executor": "Run",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.43">
     <configuration name="Tomcat 10.1.43" type="TomeeConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="TomEE 10.1.43" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -241,8 +253,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Tomcat Server.Tomcat 10.1.43" />
       <item itemvalue="TomEE Server.Tomcat 10.1.43" />
+      <item itemvalue="Tomcat Server.Tomcat 10.1.43" />
     </list>
   </component>
   <component name="SharedIndexes">
@@ -265,6 +277,7 @@
       <workItem from="1753924554442" duration="538000" />
       <workItem from="1753929202085" duration="1748000" />
       <workItem from="1754056464460" duration="32000" />
+      <workItem from="1754359199349" duration="3000" />
     </task>
     <servers />
   </component>
