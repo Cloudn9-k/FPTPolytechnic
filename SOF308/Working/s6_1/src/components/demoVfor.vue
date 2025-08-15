@@ -178,7 +178,6 @@ const addStudent = () => {
         agesv: newStudent.value.agesv,
       });
     }
-
     resetForm();
   }
 };
