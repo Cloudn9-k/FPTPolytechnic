@@ -1,0 +1,2 @@
+create database grading_auto
+use grading_auto

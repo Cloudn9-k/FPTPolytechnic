@@ -1,0 +1,355 @@
+package com.example.entity;
+import java.util.List;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.ToString;
+
+@Entity
+@Table(name = "loai_sp")
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @ToString
+public class LoaiSp {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "ma")
+    private String ma;
+
+    @Column(name = "ten")
+    private String ten;
+
+    @OneToMany(mappedBy = "loaiSp")
+    private List<SanPham> sanPhams;
+}
+
+
+package com.example.entity;
+
+import java.math.BigDecimal;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.ToString;
+
+@Entity
+@Table(name = "san_pham")
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @ToString
+public class SanPham {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "ma")
+    private String ma;
+
+    @Column(name = "ten")
+    private String ten;
+
+    @Column(name = "mota")
+    private String moTa;
+
+    @Column(name = "website")
+    private String website;
+
+    @Column(name = "gia_ban")
+    private BigDecimal giaBan;
+
+    @Column(name = "so_luong")
+    private Integer soLuong;
+
+    @ManyToOne
+    @JoinColumn(name = "id_loai_sp")
+    private LoaiSp loaiSp;
+
+    @Column(name = "trang_thai")
+    private Integer trangThai;
+}
+
+package com.example.repository;
+
+import com.example.entity.LoaiSp;
+import com.example.util.Hibernate;
+import org.hibernate.Session;
+import java.util.List;
+
+public class LoaiSpRepository {
+    public List<LoaiSp> getAll(){
+        try (Session session = Hibernate.getFactory().openSession()) {
+            return session.createQuery("from LoaiSp").list();
+        }
+    }
+}
+
+
+package com.example.repository;
+
+import com.example.entity.SanPham;
+import com.example.util.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import java.util.List;
+
+public class SanPhamRepository {
+    public List<SanPham> getAll(){
+        try (Session session = Hibernate.getFactory().openSession()) {
+            return session.createQuery("from SanPham").list();
+        }
+    }
+    public SanPham getById(int id){
+        try (Session session = Hibernate.getFactory().openSession()) {
+            return session.find(SanPham.class,id);
+        }
+    }
+    public void add(SanPham sanPham){
+        Transaction tx = null;
+        try (Session session = Hibernate.getFactory().openSession()) {
+            tx = session.beginTransaction();
+            session.persist(sanPham);
+            tx.commit();
+        }catch (Exception e){
+            if(tx != null){
+                tx.rollback();
+            }
+        }
+    }
+    public void save(SanPham sanPham){
+        Transaction tx = null;
+        try (Session session = Hibernate.getFactory().openSession()) {
+            tx = session.beginTransaction();
+            session.merge(sanPham);
+            tx.commit();
+        }catch (Exception e){
+            if(tx != null){
+                tx.rollback();
+            }
+        }
+    }
+    public void delete(Integer id){
+        Transaction tx = null;
+        try (Session session = Hibernate.getFactory().openSession()) {
+            tx = session.beginTransaction();
+            SanPham sanPham = session.find(SanPham.class,id);
+            if(sanPham != null){
+                session.remove(sanPham);
+            }
+            tx.commit();
+        }catch (Exception e){
+            if(tx != null){
+                tx.rollback();
+            }
+        }
+    }
+}
+
+
+package com.example.servlet;
+
+import com.example.entity.LoaiSp;
+import com.example.entity.SanPham;
+import com.example.repository.LoaiSpRepository;
+import com.example.repository.SanPhamRepository;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.List;
+
+@WebServlet(urlPatterns = {"/san-pham/hien-thi", "/san-pham/add", "/san-pham/update", "/san-pham/delete", "/san-pham/detail"})
+public class SanPhamServlet extends HttpServlet {
+    private SanPhamRepository sanPhamRepo = new SanPhamRepository();
+    private LoaiSpRepository loaiSpRepo = new LoaiSpRepository();
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String uri = req.getRequestURI();
+        if (uri.contains("/hien-thi")) {
+            List<SanPham> sanPhams = sanPhamRepo.getAll();
+            req.setAttribute("sanPhams", sanPhams);
+        } else if (uri.contains("/detail")) {
+            Integer id = Integer.valueOf(req.getParameter("id"));
+            SanPham sanPhamDetail = sanPhamRepo.getById(id);
+            req.setAttribute("sanPhamDetail", sanPhamDetail);
+        }
+        List<LoaiSp> loaiSps = loaiSpRepo.getAll();
+        req.setAttribute("loaiSps", loaiSps);
+        req.getRequestDispatcher("/sanpham.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String uri = req.getRequestURI();
+        if (uri.contains("/add")) {
+            themSanPham(req, resp);
+        } else if (uri.contains("/update")) {
+            capNhatSanPham(req, resp);
+        } else if (uri.contains("/delete")) {
+            xoaSanPham(req, resp);
+        }
+    }
+
+    private void themSanPham(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String maSp = req.getParameter("ma");
+        String tenSp = req.getParameter("ten");
+        String moTa = req.getParameter("mota");
+        String website = req.getParameter("website");
+        BigDecimal giaBan = new BigDecimal(req.getParameter("gia_ban"));
+        Integer soLuong = Integer.valueOf(req.getParameter("so_luong"));
+        Integer idLoai = Integer.valueOf(req.getParameter("id_loai_sp"));
+        Integer trangThai = Integer.valueOf(req.getParameter("trang_thai"));
+
+        SanPham newSp = new SanPham();
+        newSp.setMa(maSp);
+        newSp.setTen(tenSp);
+        newSp.setMoTa(moTa);
+        newSp.setWebsite(website);
+        newSp.setGiaBan(giaBan);
+        newSp.setSoLuong(soLuong);
+        newSp.setTrangThai(trangThai);
+
+        LoaiSp loaiSp = new LoaiSp();
+        loaiSp.setId(idLoai);
+        newSp.setLoaiSp(loaiSp);
+
+        sanPhamRepo.add(newSp);
+        resp.sendRedirect(req.getContextPath() + "/san-pham/hien-thi");
+    }
+
+    private void capNhatSanPham(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Integer id = Integer.valueOf(req.getParameter("id"));
+        String maSp = req.getParameter("ma");
+        String tenSp = req.getParameter("ten");
+        String moTa = req.getParameter("mota");
+        String website = req.getParameter("website");
+        BigDecimal giaBan = new BigDecimal(req.getParameter("gia_ban"));
+        Integer soLuong = Integer.valueOf(req.getParameter("so_luong"));
+        Integer idLoai = Integer.valueOf(req.getParameter("id_loai_sp"));
+        Integer trangThai = Integer.valueOf(req.getParameter("trang_thai"));
+
+        SanPham updatedSp = new SanPham();
+        updatedSp.setId(id);
+        updatedSp.setMa(maSp);
+        updatedSp.setTen(tenSp);
+        updatedSp.setMoTa(moTa);
+        updatedSp.setWebsite(website);
+        updatedSp.setGiaBan(giaBan);
+        updatedSp.setSoLuong(soLuong);
+        updatedSp.setTrangThai(trangThai);
+
+        LoaiSp loaiSp = new LoaiSp();
+        loaiSp.setId(idLoai);
+        updatedSp.setLoaiSp(loaiSp);
+
+        sanPhamRepo.save(updatedSp);
+        resp.sendRedirect(req.getContextPath() + "/san-pham/hien-thi");
+    }
+
+    private void xoaSanPham(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Integer id = Integer.valueOf(req.getParameter("id"));
+        sanPhamRepo.delete(id);
+        resp.sendRedirect(req.getContextPath() + "/san-pham/hien-thi");
+    }
+}
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+    <title>Quản lý Sản Phẩm</title>
+</head>
+<body>
+<div class="form-container">
+    <c:if test="${sanPhamDetail == null}">
+        <h2>Thêm mới Sản Phẩm</h2>
+        <form action="${pageContext.request.contextPath}/san-pham/add" method="post">
+            Mã SP: <input type="text" name="ma" required><br>
+            Tên SP: <input type="text" name="ten" required><br>
+            Mô tả: <input type="text" name="mota" required><br>
+            Website: <input type="text" name="website" required><br>
+            Giá Bán: <input type="number" name="gia_ban" step="0.01" required><br>
+            Số Lượng: <input type="number" name="so_luong" required><br>
+            Trạng thái: <input type="number" name="trang_thai" required><br>
+            Loại SP:
+            <select name="id_loai_sp">
+                <c:forEach items="${loaiSps}" var="loai">
+                    <option value="${loai.id}">${loai.ten}</option>
+                </c:forEach>
+            </select><br>
+            <button type="submit">Thêm</button>
+        </form>
+    </c:if>
+
+    <c:if test="${sanPhamDetail != null}">
+        <h2>Cập nhật Sản Phẩm</h2>
+        <form action="${pageContext.request.contextPath}/san-pham/update" method="post">
+            <input type="hidden" name="id" value="${sanPhamDetail.id}">
+            Mã SP: <input type="text" name="ma" value="${sanPhamDetail.ma}" required><br>
+            Tên SP: <input type="text" name="ten" value="${sanPhamDetail.ten}" required><br>
+            Mô tả: <input type="text" name="mota" value="${sanPhamDetail.moTa}" required><br>
+            Website: <input type="text" name="website" value="${sanPhamDetail.website}" required><br>
+            Giá Bán: <input type="number" name="gia_ban" step="0.01" value="${sanPhamDetail.giaBan}" required><br>
+            Số Lượng: <input type="number" name="so_luong" value="${sanPhamDetail.soLuong}" required><br>
+            Trạng thái: <input type="number" name="trang_thai" value="${sanPhamDetail.trangThai}" required><br>
+            Loại SP:
+            <select name="id_loai_sp">
+                <c:forEach items="${loaiSps}" var="loai">
+                    <option value="${loai.id}" <c:if test="${loai.id == sanPhamDetail.loaiSp.id}">selected</c:if>>${loai.ten}</option>
+                </c:forEach>
+            </select><br>
+            <button type="submit">Cập nhật</button>
+            <a href="${pageContext.request.contextPath}/san-pham/hien-thi">Hủy</a>
+        </form>
+    </c:if>
+</div>
+
+<hr>
+
+<h2>Danh sách Sản Phẩm</h2>
+<table class="table-container">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Mã SP</th>
+        <th>Tên SP</th>
+        <th>Mô tả</th>
+        <th>Website</th>
+        <th>Giá Bán</th>
+        <th>Số Lượng</th>
+        <th>Tên Loại SP</th>
+        <th>Trạng thái</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${sanPhams}" var="sp">
+        <tr>
+            <td>${sp.id}</td>
+            <td>${sp.ma}</td>
+            <td>${sp.ten}</td>
+            <td>${sp.moTa}</td>
+            <td>${sp.website}</td>
+            <td>${sp.giaBan}</td>
+            <td>${sp.soLuong}</td>
+            <td>${sp.loaiSp.ten}</td>
+            <td>${sp.trangThai}</td>
+            <td>
+                <a href="${pageContext.request.contextPath}/san-pham/detail?id=${sp.id}">Sửa</a>
+                <a href="${pageContext.request.contextPath}/san-pham/delete?id=${sp.id}" onclick="return confirm('Bạn có chắc muốn xóa không?');">Xóa</a>
+            </td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+</body>
+</html>

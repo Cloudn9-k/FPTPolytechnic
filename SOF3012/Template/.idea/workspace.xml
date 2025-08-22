@@ -11,12 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="01f7c6ad-3940-45a5-abe1-2245938f01ca" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/module/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/module/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Template-1.0-SNAPSHOT/WEB-INF/classes/com/example/module/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Template-1.0-SNAPSHOT/WEB-INF/classes/com/example/module/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Template-1.0-SNAPSHOT/WEB-INF/classes/com/example/repo/ProductRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Template-1.0-SNAPSHOT/WEB-INF/classes/com/example/repo/ProductRepo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/module/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/module/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/repo/ProductRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/repo/ProductRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../buoi4_SOF3012/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../buoi4_SOF3012/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SOF308/Working/s6_1/src/components/demoVfor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../SOF308/Working/s6_1/src/components/demoVfor.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -314,6 +311,9 @@
       <workItem from="1754355346037" duration="47000" />
       <workItem from="1754355791389" duration="236000" />
       <workItem from="1754359172046" duration="31000" />
+      <workItem from="1754498758713" duration="607000" />
+      <workItem from="1754526703239" duration="1567000" />
+      <workItem from="1754700093023" duration="2616000" />
     </task>
     <servers />
   </component>
