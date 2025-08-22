@@ -66,12 +66,12 @@
                     <td>{{ index + 1 }}</td>
                     <td>{{ item.tenMonAn }}</td>
                     <td>{{ item.loaiMonAn }}</td>
-                    <td>{{ item.giaTien }}</td>
+                    <td>{{ item.giaTien | currency }}</td>
                     <td>{{ item.moTa }}</td>
                     <td>
-                      <button class="btn btn-danger btn-sm" @click="xoaMonAn(index)">Remove</button>
+                      <button class="btn btn-danger btn-sm" @click="xoaMonAn(index)">Xóa</button>
                     </td>
-                  </tr>
+                  </tr>`
                 </tbody>
               </table>
             </div>
@@ -124,4 +124,4 @@ const resetForm = () => {
 .card-header.bg-primary {
   background-color: #007bff !important;
 }
-</style>
+</style>     
