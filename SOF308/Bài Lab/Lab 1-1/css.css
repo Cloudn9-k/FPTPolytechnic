@@ -1,0 +1,19 @@
+/* Custom CSS cho Sidebar */
+.sidebar-wrapper {
+    background-color: #f8f9fa; /* Màu xám nhạt cho sidebar */
+    padding: 15px; /* Thêm padding nếu cần */
+    border-radius: 8px; /* Bo góc nhẹ */
+}
+
+/* Custom CSS cho Chuyên mục */
+.category-item {
+    transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển động mượt mà */
+    cursor: pointer; /* Thêm con trỏ dạng pointer để người dùng biết là có thể click/hover */
+}
+
+.category-item:hover {
+    background-color: #e0f7fa; /* Màu xanh nhạt khi hover */
+}
+
+
+

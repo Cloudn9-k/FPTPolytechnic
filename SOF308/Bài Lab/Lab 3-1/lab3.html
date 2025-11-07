@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>Bootstrap 5</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="Lab3 - Tài Nguyên/css/bootstrap.min.css" />
+    <script src="Lab1 - Tài Nguyên/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- nhúng vì lỗi 304 unmodified -->
+    <style>
+        .article-img-container {
+            border-top-left-radius: calc(0.25rem - 1px);
+            border-top-right-radius: calc(0.25rem - 1px);
+        }
+
+        /* Đảm bảo ảnh vừa vặn với chiều ngang của card */
+        .article-img-container img {
+            display: block;
+            /* Loại bỏ khoảng trắng dưới ảnh */
+            width: 100%;
+            /* Chiếm toàn bộ chiều rộng của container */
+            height: auto;
+            /* Chiều cao tự động để giữ tỷ lệ ảnh gốc */
+            object-fit: cover;
+            /* Đảm bảo ảnh không bị méo và lấp đầy không gian nếu chiều cao tự động bị giới hạn bởi container */
+            border-top-left-radius: calc(0.25rem - 1px);
+            /* Áp dụng bo góc trực tiếp vào ảnh */
+            border-top-right-radius: calc(0.25rem - 1px);
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-header .card-title {
+            margin-bottom: 0;
+        }
+
+        .card-header .card-title a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card-header .card-title a:hover {
+            color: #0d6efd;
+
+        }
+
+
+
+
+        .pagination .page-item.active .page-link {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+
+        .pagination .page-link {
+            color: #0d6efd;
+        }
+
+        .pagination .page-link:hover {
+            color: #0a58ca;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-primary-subtle">
+        <div class="container-fluid">
+            <img src="Lab3 - Tài Nguyên/images/logo-energy-pilates.png" alt="Energy Pilates Logo"
+                style="height: 40px;">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"
+                aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href=""><i class="fa-solid fa-list me-1"></i> Bài
+                            viết</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-film me-1"></i> Video</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-circle-info me-1"></i> Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-calendar-days me-1"></i> Sự kiện</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-user me-1"></i> Tài khoản
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Đăng nhập</a></li>
+                            <li><a class="dropdown-item" href="#">Quên mật khẩu</a></li>
+                            <li><a class="dropdown-item" href="#">Đăng ký thành viên</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav d-flex">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tiếng Việt</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tiếng Anh</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="row">
+        <aside class="col-sm-4 p-5 pe-2">
+            <h3 class="text-info mt-2">Chuyên mục</h3>
+            <ul class="list-group">
+                <li
+                    class="list-group-item d-flex justify-content-between align-items-center list-group-item-action active">
+                    <a class="nav-link" href="#">Chế độ tập</a>
+                    <span class="badge bg-primary rounded-pill">12</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                    <a class="nav-link" href="#">Chế độ dinh dưỡng</a>
+                    <span class="badge bg-primary rounded-pill">15</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                    <a class="nav-link" href="#">Cẩm nang cuộc sống</a>
+                    <span class="badge bg-primary rounded-pill">99</span>
+                </li>
+            </ul>
+            <div class="card col-md-12 p-0 mt-2">
+                <div class="card-header">
+                    <h5>
+                        <strong class="text-info">Bài viết nổi bật
+                        </strong>
+                    </h5>
+                </div>
+                <div class="post-item card mb-3 border-0" tabindex="0">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-4 col-sm-3 col-md-4 col-lg-3">
+                            <div class="img-fluid">
+                                <img src="Lab3 - Tài Nguyên/images/orange_300x300.jpg"
+                                    class="img-fluid rounded-circle m-1" />
+                            </div>
+                        </div>
+                        <div class="col-8 col-sm-9 col-md-8 col-lg-9">
+                            <div class="card-body py-2 ps-2">
+                                <div class="post-title fw-bold">
+                                    9 tác dụng tuyệt vời của quả cam
+                                </div>
+                                <p>cam tự hào cam hào hào cam tự cam hào</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-item card mb-3 border-0" tabindex="0">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-4 col-sm-3 col-md-4 col-lg-3">
+                            <div class="square-img-wrapper small-img">
+                                <img src="Lab3 - Tài Nguyên/images/sesameoil_300x300.jpg"
+                                    class="img-fluid rounded-circle m-1" />
+                            </div>
+                        </div>
+                        <div class="col-8 col-sm-9 col-md-8 col-lg-9">
+                            <div class="card-body py-2 ps-2">
+                                <div class="post-title fw-bold">
+                                    10 công dụng bất ngờ từ dầu dừa
+                                </div>
+                                <p>cam tự hào cam hào hào cam tự cam hào</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-item card mb-3 border-0" tabindex="0">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-4 col-sm-3 col-md-4 col-lg-3">
+                            <div class="square-img-wrapper small-img">
+                                <img src="Lab3 - Tài Nguyên/images/spinach_300x300.jpg"
+                                    class="img-fluid rounded-circle m-1" alt="Rau mồng tơi" />
+                            </div>
+                        </div>
+                        <div class="col-8 col-sm-9 col-md-8 col-lg-9">
+                            <div class="card-body py-2 ps-2">
+                                <div class="post-title fw-bold">
+                                    Lợi ích khi ăn rau mỗi ngày
+                                </div>
+                                <p>cam tự hào cam hào hào cam tự cam hào</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+        <article class="col-lg-8 p-5 ps-2">
+            <div class="container mt-5">
+                <h2 class="mb-4">Tất cả bài viết</h2>
+
+                <div class="row g-4 mb-5" id="article-list">
+                </div>
+
+                <nav aria-label="Page navigation" class="d-flex justify-content-center">
+                    <ul class="pagination" id="pagination-controls">
+                    </ul>
+                </nav>
+            </div>
+        </article>
+    </section>
+    <section class="row">
+        <article class="col-lg-8 p-5 ps-2">
+            <div class="container mt-5" id="article-list-section">
+                <h2 class="mb-4">Tất cả bài viết</h2>
+                <div class="row g-4 mb-5" id="article-list"></div>
+                <nav aria-label="Page navigation" class="d-flex justify-content-center" id="pagination-controls"></nav>
+            </div>
+
+            <div class="container mt-5" id="article-detail-section" style="display: none;">
+                <button class="btn btn-secondary mb-4" id="back-to-list-btn">
+                    <i class="fas fa-arrow-left me-2"></i> Quay lại danh sách
+                </button>
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h3 class="card-title mb-0" id="detail-article-title"></h3>
+                    </div>
+                    <div class="article-img-container">
+                        <img id="detail-article-image" src="" alt="" class="img-fluid">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text" id="detail-article-content"></p>
+                    </div>
+                    <div class="comment-section" id="detail-comment-section">
+                        <div class="comment-input-wrapper">
+                            <img src="Lab3 - Tài Nguyên/images/avatar.png" alt="Avatar của bạn" class="comment-avatar">
+                            <input type="text" class="form-control" placeholder="Viết bình luận...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+    <script>
+        // Dữ liệu mẫu cho các bài viết (đã thêm mảng comments)
+        const articles = [
+            {
+                id: 1,
+                title: "Phương pháp tập Pilates giúp phục hồi chấn thương cột sống",
+                commentsCount: 16,
+                image: "Lab3 - Tài Nguyên/images/eat-clean.png",
+                description: "Pilates là một phương pháp tập luyện toàn diện giúp tăng cường sức mạnh cốt lõi, cải thiện sự linh hoạt và cân bằng cơ thể. Đặc biệt, các bài tập Pilates được thiết kế một cách nhẹ nhàng nhưng hiệu quả, rất phù hợp cho những người đang gặp vấn đề về cột sống, giúp phục hồi và giảm đau lưng một cách tự nhiên. Phương pháp này tập trung vào việc củng cố các nhóm cơ sâu hỗ trợ cột sống, từ đó giảm áp lực lên các đĩa đệm và dây thần kinh. Với sự hướng dẫn đúng đắn, Pilates không chỉ giúp bạn giảm đau mà còn xây dựng nền tảng sức khỏe vững chắc cho một cột sống khỏe mạnh.",
+                link: "#", // Đổi thành "#" hoặc rỗng để JS xử lý click
+                comments: [
+                    { author: "Nguyễn Văn A", avatar: "https://i.pravatar.cc/32?img=1", text: "Bài viết rất hay và hữu ích! Mình đang tìm hiểu về phương pháp này.", time: "2 giờ trước" },
+                    { author: "Trần Thị B", avatar: "https://i.pravatar.cc/32?img=2", text: "Mình đã thử Pilates được 3 tháng và thấy đau lưng giảm hẳn. Cảm ơn bài viết đã chia sẻ thêm thông tin!", time: "1 giờ trước" },
+                    { author: "Lê Văn C", avatar: "https://i.pravatar.cc/32?img=3", text: "Có phòng tập nào uy tín ở Hà Nội không ạ?", time: "30 phút trước" }
+                ]
+            },
+            {
+                id: 2,
+                title: "Đây là những gì 1 giờ Tập Pilates có thể làm cho cơ thể của bạn",
+                commentsCount: 8,
+                image: "Lab3 - Tài Nguyên/images/spinach_300x300.jpg", // Ảnh này không liên quan lắm nhưng dùng tạm
+                description: "Chỉ với 1 giờ tập Pilates mỗi ngày, bạn sẽ ngạc nhiên về những thay đổi tích cực mà cơ thể mình trải qua. Pilates không chỉ giúp đốt cháy calo và định hình vóc dáng, mà còn cải thiện đáng kể sức mạnh cơ bắp, đặc biệt là nhóm cơ cốt lõi. Sự linh hoạt, dẻo dai của cơ thể cũng sẽ được nâng cao, giúp bạn thực hiện các động tác hàng ngày một cách dễ dàng hơn và giảm nguy cơ chấn thương. Hơn nữa, Pilates còn có tác dụng thư giãn tinh thần, giảm stress và tăng cường sự tập trung, mang lại cảm giác sảng khoái sau mỗi buổi tập. Hãy thử và cảm nhận sự khác biệt!",
+                link: "#",
+                comments: [
+                    { author: "Phạm D", avatar: "https://i.pravatar.cc/32?img=4", text: "Tôi thích bài tập này! Cảm thấy khỏe khoắn hơn rất nhiều.", time: "30 phút trước" },
+                    { author: "Nguyễn E", avatar: "https://i.pravatar.cc/32?img=5", text: "Chắc phải thử ngay thôi!", time: "15 phút trước" }
+                ]
+            },
+            {
+                id: 3,
+                title: "Tập Pilates có thể cải thiện sức khỏe tim mạch của bạn",
+                commentsCount: 5,
+                image: "Lab3 - Tài Nguyên/images/tim-mach.jpg",
+                description: "Mặc dù Pilates thường được biết đến với lợi ích về cơ bắp và sự linh hoạt, nhưng ít ai biết rằng nó cũng có tác động tích cực đến sức khỏe tim mạch. Các bài tập Pilates, đặc biệt là khi thực hiện với nhịp độ liên tục và kết hợp với hơi thở sâu, có thể nâng cao nhịp tim, cải thiện tuần hoàn máu và tăng cường sức bền cho hệ tim mạch. Điều này giúp giảm huyết áp, cải thiện chức năng mạch máu và giảm nguy cơ mắc các bệnh tim mạch. Hãy kết hợp Pilates vào chế độ tập luyện của bạn để có một trái tim khỏe mạnh hơn!",
+                link: "#",
+                comments: []
+            },
+            {
+                id: 4,
+                title: "EAT CLEAN: Nên và Không Nên Ăn Thực Phẩm Nào?",
+                commentsCount: 3,
+                image: "Lab3 - Tài Nguyên/images/eat-clean.png",
+                description: "Chế độ ăn Eat Clean đang ngày càng trở nên phổ biến bởi những lợi ích tuyệt vời mà nó mang lại cho sức khỏe. Mục tiêu của Eat Clean là tiêu thụ các thực phẩm tươi, nguyên bản, không qua chế biến nhiều và tránh xa các chất phụ gia, đường hóa học, và chất béo không lành mạnh. Vậy những thực phẩm nào nên và không nên có trong thực đơn Eat Clean của bạn? Nên ăn nhiều rau xanh, trái cây tươi, protein nạc (như ức gà, cá, đậu), ngũ cốc nguyên hạt. Tránh xa đồ ăn nhanh, đồ ngọt, đồ uống có ga, và các sản phẩm chế biến sẵn. Lựa chọn đúng đắn sẽ giúp bạn có một cơ thể khỏe mạnh và tràn đầy năng lượng.",
+                link: "#",
+                comments: [
+                    { author: "Bạn", avatar: "https://i.pravatar.cc/32?img=6", text: "Cảm ơn vì những lời khuyên hữu ích! Mình sẽ áp dụng ngay.", time: "Vừa xong" }
+                ]
+            },
+            {
+                id: 5,
+                title: "10 Lợi ích không ngờ của Yoga đối với tinh thần",
+                commentsCount: 12,
+                image: "https://via.placeholder.com/600x400?text=Yoga+Tinh+Thần+5",
+                description: "Yoga không chỉ là bài tập thể chất mà còn là phương pháp tuyệt vời giúp cải thiện sức khỏe tinh thần, giảm stress và tăng cường sự tập trung. Các động tác Yoga kết hợp với kỹ thuật thở sâu và thiền định giúp làm dịu hệ thần kinh, giảm lo âu và cải thiện tâm trạng. Thực hành Yoga thường xuyên giúp bạn tìm thấy sự bình yên nội tâm, nâng cao khả năng đối phó với áp lực cuộc sống và ngủ ngon hơn. Hãy dành thời gian cho Yoga mỗi ngày để nuôi dưỡng cả thể chất lẫn tinh thần.",
+                link: "#",
+                comments: [
+                    { author: "Minh", avatar: "https://i.pravatar.cc/32?img=7", text: "Tuyệt vời, Yoga giúp tôi thư giãn rất nhiều sau ngày làm việc căng thẳng.", time: "1 ngày trước" },
+                    { author: "Hạnh", avatar: "https://i.pravatar.cc/32?img=8", text: "Mình tập Yoga đã lâu và thấy tinh thần thoải mái hơn hẳn.", time: "2 ngày trước" }
+                ]
+            },
+            {
+                id: 6,
+                title: "Hướng dẫn tập luyện tại nhà hiệu quả chỉ với 30 phút",
+                commentsCount: 7,
+                image: "https://via.placeholder.com/600x400?text=Tập+tại+nhà+6",
+                description: "Bạn bận rộn và không có thời gian đến phòng gym? Đừng lo lắng! Chỉ với 30 phút tập luyện tại nhà mỗi ngày, bạn vẫn có thể duy trì vóc dáng và sức khỏe tốt. Bài viết này sẽ hướng dẫn bạn các bài tập toàn thân đơn giản nhưng hiệu quả, không cần dụng cụ phức tạp. Bao gồm các động tác như squat, chống đẩy, plank, lunges, và cardio nhẹ. Điều quan trọng là duy trì đều đặn và thực hiện đúng kỹ thuật để tránh chấn thương. Hãy bắt đầu ngay hôm nay để thấy sự thay đổi!",
+                link: "#",
+                comments: [
+                    { author: "Khánh", avatar: "https://i.pravatar.cc/32?img=9", text: "Rất phù hợp với người bận rộn như mình. Cảm ơn ad!", time: "5 giờ trước" }
+                ]
+            },
+            {
+                id: 7,
+                title: "Bí quyết giảm cân an toàn và bền vững cho người bận rộn",
+                commentsCount: 10,
+                image: "https://via.placeholder.com/600x400?text=Giảm+cân+7",
+                description: "Giảm cân không phải là một cuộc đua mà là một hành trình cần sự kiên trì và phương pháp đúng đắn. Đối với người bận rộn, việc giảm cân an toàn và bền vững càng trở nên khó khăn. Bí quyết nằm ở việc kết hợp chế độ ăn uống khoa học và luyện tập hợp lý. Thay vì nhịn ăn khắt khe, hãy tập trung vào việc ăn uống đủ chất, tăng cường rau xanh, protein và giảm tinh bột xấu. Đồng thời, tận dụng thời gian rảnh để vận động, dù chỉ là đi bộ nhanh hay tập thể dục tại nhà. Sự kiên trì và lối sống lành mạnh sẽ mang lại kết quả lâu dài.",
+                link: "#",
+                comments: []
+            },
+            {
+                id: 8,
+                title: "Thực đơn dinh dưỡng cho người muốn tăng cơ bắp",
+                commentsCount: 9,
+                image: "https://via.placeholder.com/600x400?text=Tăng+cơ+8",
+                description: "Để xây dựng cơ bắp săn chắc, việc tập luyện là chưa đủ, chế độ dinh dưỡng đóng vai trò vô cùng quan trọng. Một thực đơn hợp lý cần cung cấp đủ protein để phục hồi và phát triển cơ, đủ carbohydrate để cung cấp năng lượng cho buổi tập, và chất béo lành mạnh để hỗ trợ quá trình trao đổi chất. Hãy tập trung vào các nguồn protein chất lượng cao như ức gà, cá, trứng, thịt bò nạc, sữa chua. Kết hợp với khoai lang, gạo lứt, yến mạch để bổ sung carb phức tạp. Đừng quên các loại hạt và quả bơ cho chất béo tốt. Lên kế hoạch bữa ăn khoa học sẽ giúp bạn đạt được mục tiêu tăng cơ hiệu quả.",
+                link: "#",
+                comments: [
+                    { author: "Đức", avatar: "https://i.pravatar.cc/32?img=10", text: "Thực đơn này rất hữu ích, mình đang áp dụng và thấy hiệu quả rõ rệt.", time: "4 giờ trước" }
+                ]
+            },
+            {
+                id: 9,
+                title: "Làm thế nào để duy trì động lực tập luyện mỗi ngày?",
+                commentsCount: 4,
+                image: "https://via.placeholder.com/600x400?text=Động+lực+9",
+                description: "Động lực là yếu tố then chốt để duy trì thói quen tập luyện lâu dài. Ai cũng có lúc mất động lực, nhưng quan trọng là cách bạn vượt qua nó. Hãy đặt ra mục tiêu nhỏ và thực tế, theo dõi tiến độ của bản thân để thấy sự cải thiện. Tìm một người bạn tập cùng hoặc tham gia các lớp học để có thêm động lực. Thay đổi các bài tập để tránh nhàm chán. Quan trọng nhất, hãy lắng nghe cơ thể và đừng quá khắt khe với bản thân. Biến việc tập luyện thành một phần thú vị của cuộc sống, bạn sẽ duy trì được nó mỗi ngày.",
+                link: "#",
+                comments: []
+            },
+            {
+                id: 10,
+                title: "Vai trò của giấc ngủ đối với sức khỏe tổng thể",
+                commentsCount: 6,
+                image: "https://via.placeholder.com/600x400?text=Giấc+ngủ+10",
+                description: "Giấc ngủ chất lượng không chỉ giúp phục hồi năng lượng mà còn ảnh hưởng sâu sắc đến mọi khía cạnh của sức khỏe tổng thể. Khi bạn ngủ, cơ thể thực hiện các quá trình sửa chữa tế bào, củng cố hệ miễn dịch, và xử lý thông tin trong não bộ. Thiếu ngủ kéo dài có thể dẫn đến suy giảm nhận thức, tăng nguy cơ béo phì, bệnh tim mạch và tiểu đường. Đảm bảo ngủ đủ 7-9 giờ mỗi đêm, duy trì lịch ngủ đều đặn và tạo môi trường ngủ thoải mái sẽ giúp bạn có một cơ thể khỏe mạnh và tinh thần minh mẫn.",
+                link: "#",
+                comments: []
+            },
+            {
+                id: 11,
+                title: "Thực phẩm bổ sung: Có nên dùng hay không?",
+                commentsCount: 14,
+                image: "https://via.placeholder.com/600x400?text=Thực+phẩm+bổ+sung+11",
+                description: "Thực phẩm bổ sung là một chủ đề gây nhiều tranh cãi. Chúng có thể hỗ trợ đáng kể cho những người tập luyện cường độ cao hoặc có chế độ ăn uống thiếu hụt một số chất dinh dưỡng. Tuy nhiên, chúng không phải là giải pháp thần kỳ và không thể thay thế cho một chế độ ăn uống cân bằng và lối sống lành mạnh. Trước khi sử dụng bất kỳ loại thực phẩm bổ sung nào, hãy tìm hiểu kỹ về thành phần, liều lượng khuyến nghị và tham khảo ý kiến của chuyên gia dinh dưỡng hoặc bác sĩ. Sử dụng đúng cách, chúng có thể là một công cụ hữu ích để đạt được mục tiêu sức khỏe của bạn.",
+                link: "#",
+                comments: []
+            },
+            {
+                id: 12,
+                title: "Phòng tránh chấn thương khi tập gym",
+                commentsCount: 11,
+                image: "https://via.placeholder.com/600x400?text=Phòng+tránh+chấn+thương+12",
+                description: "Chấn thương là điều không ai mong muốn khi tập gym, nhưng nó lại khá phổ biến nếu bạn không cẩn thận. Để phòng tránh chấn thương, điều quan trọng nhất là khởi động kỹ trước khi tập và giãn cơ sau khi tập. Luôn luôn lắng nghe cơ thể và không cố gắng nâng tạ quá sức. Học hỏi kỹ thuật đúng cho từng bài tập và sử dụng trọng lượng phù hợp. Nếu bạn là người mới, hãy tìm sự hướng dẫn từ huấn luyện viên. Việc duy trì sự ổn định, kiểm soát chuyển động và không vội vàng sẽ giúp bạn tập luyện an toàn và hiệu quả, tránh được những chấn thương không đáng có.",
+                link: "#",
+                comments: []
+            }
+        ];
+
+        const articlesPerPage = 4; // Số bài viết mỗi trang
+        let currentPage = 1; // Trang hiện tại
+
+        // Lấy references đến các element chính
+        const articleListSection = document.getElementById('article-list-section');
+        const articleDetailSection = document.getElementById('article-detail-section');
+        const backToListBtn = document.getElementById('back-to-list-btn');
+        const articleListContainer = document.getElementById('article-list'); // Đổi tên để rõ ràng hơn
+        const paginationControls = document.getElementById('pagination-controls');
+
+        const detailArticleTitle = document.getElementById('detail-article-title');
+        const detailArticleImage = document.getElementById('detail-article-image');
+        const detailArticleContent = document.getElementById('detail-article-content');
+        const detailCommentSection = document.getElementById('detail-comment-section');
+
+        // --- Hàm hiển thị danh sách bài viết ---
+        function displayArticles(page) {
+            // Loại bỏ class 'show' khỏi các card hiện tại trước khi xóa
+            const currentCards = articleListContainer.querySelectorAll('.card');
+            currentCards.forEach(card => card.classList.remove('show'));
+
+            setTimeout(() => {
+                articleListContainer.innerHTML = ''; // Xóa các bài viết cũ
+                const startIndex = (page - 1) * articlesPerPage;
+                const endIndex = startIndex + articlesPerPage;
+                const articlesToDisplay = articles.slice(startIndex, endIndex);
+
+                articlesToDisplay.forEach((article, index) => {
+                    // Tạo HTML cho các bình luận (chỉ hiển thị vài cái đầu nếu có)
+                    let commentsHtml = '';
+                    const displayComments = article.comments.slice(0, 2); // Chỉ hiển thị 2 bình luận đầu
+                    if (displayComments.length > 0) {
+                        commentsHtml = displayComments.map(comment => `
+                            <div class="comment-item">
+                                <img src="${comment.avatar}" alt="${comment.author}" class="comment-avatar">
+                                <div class="comment-content-wrapper">
+                                    <div class="comment-bubble">
+                                        <span class="comment-author">${comment.author}</span>
+                                        ${comment.text}
+                                    </div>
+                                    <div class="comment-actions">
+                                        <a href="#" class="btn-link">Thích</a>
+                                        <a href="#" class="btn-link">Trả lời</a>
+                                        <span class="comment-time">${comment.time}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('');
+                    }
+                    // Thêm link xem tất cả bình luận nếu có nhiều hơn 2
+                    if (article.comments.length > 2) {
+                        commentsHtml += `<p class="text-center mt-2 mb-0"><a href="#" class="btn-link" data-article-id="${article.id}">Xem tất cả ${article.comments.length} bình luận</a></p>`;
+                    }
+
+
+                    const articleCard = `
+                        <div class="col-lg-6 col-md-12">
+                            <div class="card shadow-sm">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">
+                                        <a href="#" class="article-title-link" data-article-id="${article.id}">${article.title}
+                                            <span class="comment-icon ms-2"><i class="far fa-comment"></i> ${article.commentsCount}</span>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div class="article-img-container">
+                                    <img src="${article.image}" alt="${article.title}">
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">${article.description.substring(0, 150)}...</p> </div>
+                                <div class="comment-section">
+                                    ${commentsHtml}
+                                    <div class="comment-input-wrapper">
+                                        <img src="https://i.pravatar.cc/32?img=user" alt="Avatar của bạn" class="comment-avatar">
+                                        <input type="text" class="form-control" placeholder="Viết bình luận...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    articleListContainer.insertAdjacentHTML('beforeend', articleCard);
+
+                    // Kích hoạt animation fade-in cho card mới sau một khoảng trễ
+                    const newCard = articleListContainer.lastElementChild.querySelector('.card');
+                    setTimeout(() => {
+                        newCard.classList.add('show');
+                    }, 100 * index);
+                });
+
+                // Gắn sự kiện click cho các tiêu đề bài viết
+                articleListContainer.querySelectorAll('.article-title-link').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault(); // Ngăn chặn chuyển hướng trang
+                        const articleId = parseInt(e.target.dataset.articleId);
+                        showArticleDetail(articleId);
+                    });
+                });
+                // Gắn sự kiện click cho "Xem tất cả bình luận"
+                 articleListContainer.querySelectorAll('.comment-section .btn-link[data-article-id]').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const articleId = parseInt(e.target.dataset.articleId);
+                        showArticleDetail(articleId); // Vẫn chuyển đến trang chi tiết để xem full cmt
+                    });
+                });
+
+            }, 300);
+        }
+
+        // --- Hàm để tạo các nút phân trang ---
+        function setupPagination() {
+            paginationControls.innerHTML = '';
+            const totalPages = Math.ceil(articles.length / articlesPerPage);
+
+            const prevButton = `
+                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" aria-label="Previous" data-page="${currentPage - 1}">
+                        <span aria-hidden="true">&larr;</span>
+                    </a>
+                </li>
+            `;
+            paginationControls.insertAdjacentHTML('beforeend', prevButton);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = `
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a class="page-link" href="#" data-page="${i}">${i}</a>
+                    </li>
+                `;
+                paginationControls.insertAdjacentHTML('beforeend', pageButton);
+            }
+
+            const nextButton = `
+                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                    <a class="page-link" href="#" aria-label="Next" data-page="${currentPage + 1}">
+                        <span aria-hidden="true">&rarr;</span>
+                    </a>
+                </li>
+            `;
+            paginationControls.insertAdjacentHTML('beforeend', nextButton);
+
+            paginationControls.querySelectorAll('.page-link').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const newPage = parseInt(e.target.dataset.page);
+                    if (newPage > 0 && newPage <= totalPages && newPage !== currentPage) {
+                        currentPage = newPage;
+                        displayArticles(currentPage);
+                        setupPagination();
+                    }
+                });
+            });
+        }
+
+        // --- Hàm hiển thị chi tiết bài viết ---
+        function showArticleDetail(articleId) {
+            const article = articles.find(a => a.id === articleId);
+
+            if (article) {
+                // Ẩn danh sách và hiện chi tiết
+                articleListSection.style.display = 'none';
+                articleDetailSection.style.display = 'block';
+
+                // Điền dữ liệu vào phần chi tiết
+                detailArticleTitle.textContent = article.title;
+                detailArticleImage.src = article.image;
+                detailArticleImage.alt = article.title;
+                detailArticleContent.textContent = article.description; // Hiển thị toàn bộ mô tả/nội dung
+
+                // Render tất cả bình luận
+                let allCommentsHtml = '';
+                if (article.comments && article.comments.length > 0) {
+                    allCommentsHtml = article.comments.map(comment => `
+                        <div class="comment-item">
+                            <img src="${comment.avatar}" alt="${comment.author}" class="comment-avatar">
+                            <div class="comment-content-wrapper">
+                                <div class="comment-bubble">
+                                    <span class="comment-author">${comment.author}</span>
+                                    ${comment.text}
+                                </div>
+                                <div class="comment-actions">
+                                    <a href="#" class="btn-link">Thích</a>
+                                    <a href="#" class="btn-link">Trả lời</a>
+                                    <span class="comment-time">${comment.time}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    allCommentsHtml = '<p class="text-center text-muted">Chưa có bình luận nào.</p>';
+                }
+                // Chèn các bình luận vào trước khung nhập bình luận
+                detailCommentSection.querySelector('.comment-input-wrapper').insertAdjacentHTML('beforebegin', allCommentsHtml);
+
+                // Cuộn lên đầu trang chi tiết
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // --- Hàm quay lại danh sách bài viết ---
+        function showArticleList() {
+            articleDetailSection.style.display = 'none';
+            articleListSection.style.display = 'block';
+            // Xóa bình luận cũ trong phần chi tiết trước khi quay lại
+            detailCommentSection.innerHTML = `
+                <div class="comment-input-wrapper">
+                    <img src="https://i.pravatar.cc/32?img=user" alt="Avatar của bạn" class="comment-avatar">
+                    <input type="text" class="form-control" placeholder="Viết bình luận...">
+                </div>
+            `;
+            // Cuộn lên đầu trang danh sách bài viết
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+
+        // Khởi tạo hiển thị khi tải trang lần đầu
+        document.addEventListener('DOMContentLoaded', () => {
+            displayArticles(currentPage);
+            setupPagination();
+
+            // Gắn sự kiện cho
+            backToListBtn.addEventListener('click', showArticleList);
+        });
+    </script>
+</body>
+
+</html>

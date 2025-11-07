@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <ul class="nav nav-tabs" role="tablist">
+            <liå class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#register">
+                    đăng ký
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#login">
+                    đăng nhập
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content border p-4">
+            <div class="tab-pane fade show active"  id="register">
+                <form action="">
+                    <div class="mb-3">
+                        <label for="">họ tên</label>
+                        <input type="text" class="form-control" placeholder="nhập họ tên">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">email</label>
+                        <input type="text" class="form-control" placeholder="nhập email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">SĐT</label>
+                        <input type="text" class="form-control" placeholder="nhập SĐT">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">mật khẩu</label>
+                        <input type="text" class="form-control" placeholder="nhập mật khẩu">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Xác nhận mật khẩu</label>
+                        <input type="text" class="form-control" placeholder="nhập xác nhận">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Giới tính</label>
+                        <input type="text" class="form-control" placeholder="nhập giới tính">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Ngôn ngữ</label>
+                        <select name="" id="" class="form-select">
+                            <option selected> tiếng anh</option selected>
+                            <option> Tiếng việt</option>
+                        </select>
+                    </div>
+                    <div class="form-check mb-3">
+
+                        <input type="checkbox" class="form-check-input" id="agree">
+                        <label for="agree" class="form-check-label">Tôi đồng ý với các điều khoản</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng ký</button>
+                </form>
+            </div>
+            <div id="login" class="tab-pane fade">
+                <form>
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control" placeholder="Nhập email">
+                    </div>
+                    <div class="mb-3">
+                        <label>Mật khẩu</label>
+                        <input type="password" class="form-control" placeholder="Nhập mật khẩu">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

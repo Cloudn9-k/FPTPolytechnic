@@ -1,0 +1,28 @@
+# --- PHẦN 1: BỎ QUA FILE RÁC CHUNG ---
+# Bỏ qua file IDE, build, log, và rác hệ điều hành
+# (Dấu ** có nghĩa là áp dụng cho mọi thư mục con)
+**/.idea/
+**/*.iml
+**/target/
+**/build/
+**/node_modules/
+**/.DS_Store
+**/*.log
+*.log.*
+
+# --- PHẦN 2: BỎ QUA CÁC THƯ MỤC RÁC Ở GỐC ---
+# Đây là phần giải quyết yêu cầu của bạn
+# Nó sẽ bỏ qua apache-tomcat, demo, ENT2227, v.v.
+/apache-tomcat-10.1.43/
+/apache-tomcat-10.1.43.tar.gz
+/demo/
+/ENT2227/
+/FileLogSEB/
+/KiemThuCoBanSOF3032/
+/personal/
+
+# --- PHẦN 3: BỎ QUA CÁC MỤC BẠN KHÔNG MUỐN TRONG SOF3062 ---
+# (Theo đúng yêu cầu của bạn)
+/SOF3062/Assignment.pdf
+/SOF3062/Bài Lab/
+/SOF3062/Slide/

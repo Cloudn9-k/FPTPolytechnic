@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<a href="/"> trang chủ</a>
+<a href="/poly/url0">url 1</a> |
+<a href="/poly/url1">2</a> |
+<a href="/poly/url2">3</a> |
+<a href="/poly/url3">4</a> |
+<a href="/poly/url4">5</a> |
+<hr>
+
+<h1> Page: <b th:text="${message}"></b></h1>
+<hr>
+
+<div th:replace="/auth/user_info :: userInfo"></div>
+
+</body>
+</html>
