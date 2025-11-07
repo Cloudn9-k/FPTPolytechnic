@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+form sửa
+
+<form action="/nhan-vien/update" method="post">
+    ma: <input type="text" name="id" th:value="*{nhanVien.id}"><br>
+    ma: <input type="text" name="maNhanVien" th:value="*{nhanVien.maNhanVien}"><br>
+    ten: <input type="text" name="hoTen" th:value="*{nhanVien.hoTen}"><br>
+    gioiTinh:
+    nam:<input type="radio" name="gioiTinh" th:checked="*{nhanVien.gioiTinh}" value="true">
+    nu: <input type="radio" name="gioiTinh" th:checked="*{!nhanVien.gioiTinh}" value="false">
+    Sdt <input type="text" name="soDienThoai" th:value="*{nhanVien.soDienThoai}">
+    <br>
+    chức vụ
+    <select name="chucVu">
+        <th:block th:each="cv : ${listChucVu}">
+            <option th:value="${cv.id}" th:text="${cv.tenChucVu}" th:selected="${nhanVien.chucVu.id == cv.id}"></option>
+        </th:block>
+    </select>
+
+    <button> submit</button>
+</form>
+</body>
+</html>

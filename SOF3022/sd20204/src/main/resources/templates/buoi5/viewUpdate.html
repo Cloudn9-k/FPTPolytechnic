@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Sua sinh vien:
+    <form action="/buoi5/update" method="post">
+        Id: <input type="text" name="id" th:value="${sinhVien.id}"> <br>
+        Ten: <input type="text" name="ten" th:value="${sinhVien.ten}"> <br>
+        Diem: <input type="text" name="diem" th:value="${sinhVien.diem}"> <br>
+        Gioi tinh:
+        Nam <input type="radio" name="gioiTinh" value="true" th:checked="${sinhVien.gioiTinh}">
+        Nu <input type="radio" name="gioiTinh" value="false" th:checked="${!sinhVien.gioiTinh}">
+        <br>
+        <button>Submit</button>
+    </form>
+</body>
+</html>

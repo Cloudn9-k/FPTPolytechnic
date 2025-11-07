@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+form search
+<form action="/don-hang/search" method="get">
+    ten: <input type="text" name="tenKhachHang">
+    <button>tìm</button>
+</form>
+form
+<form action="/don-hang/them" method="post" th:object="${dh}">
+    ten khach hang <input type="text" th:field="*{tenKhachHang}"><br>
+    so luong dat <input type="text" th:field="*{soLuongDat}"><br>
+    Trang thai:
+    Con <input type="radio" th:field="*{trangThai}" value="true">
+    het <input type="radio" th:field="*{trangThai}" value="false">
+    <i th:errors="*{trangThai}"></i>
+    <br>
+    <select th:field="*{sanPham}">
+        <th:block th:each="sp : ${listSanPham}">
+            <option value="">Vui lòng chọn</option>
+            <option th:value="${sp.id}" th:text="${sp.tenSanPham}"></option>
+        </th:block>
+    </select>
+    <i th:errors="*{sanPham}"></i>
+    <button>thêm</button>
+</form>
+Bảng sản phẩm
+<table>
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>tên khách</td>
+        <td>trạng thái</td>
+        <td> san pham</td>
+        <td> hành động</td>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="dh : ${listDonHang}">
+        <tr>
+            <td th:text="${dh.id}"></td>
+            <td th:text="${dh.tenKhachHang}"></td>
+            <td th:text="${dh.soLuongDat}"></td>
+            <td th:text="${dh.trangThai==true ? 'con' : 'het'}"></td>
+            <td th:text="${dh.sanPham != null ? dh.sanPham.tenSanPham : 'Chua co' }"></td>
+            <td>
+                <a th:href="@{|/don-hang/view-update/${dh.id}|}">view update</a>
+                <a th:href="@{|/don-hang/xoa?id=${dh.id}|}">xoa</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>

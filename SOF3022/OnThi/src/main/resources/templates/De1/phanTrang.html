@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Bảng sản phẩm
+<table>
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>tên khách</td>
+        <td>trạng thái</td>
+        <td> san pham</td>
+        <td> hành động</td>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="dh : ${page.getContent}">
+        <tr>
+            <td th:text="${dh.id}"></td>
+            <td th:text="${dh.tenKhachHang}"></td>
+            <td th:text="${dh.soLuongDat}"></td>
+            <td th:text="${dh.trangThai==true ? 'con' : 'het'}"></td>
+            <td th:text="${dh.sanPham != null ? dh.sanPham.tenSanPham : 'Chua co' }"></td>
+            <td>
+                <a th:href="@{|/don-hang/view-update/${dh.id}|}">view update</a>
+                <a th:href="@{|/don-hang/xoa?id=${dh.id}|}">xoa</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>

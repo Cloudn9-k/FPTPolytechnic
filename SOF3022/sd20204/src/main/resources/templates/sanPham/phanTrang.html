@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+bang sản phẩm
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>tên</th>
+        <th>giá</th>
+        <th>còn bảo hành</th>
+        <th>danh mục</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="sp : ${page.getContent()}">
+        <tr>
+            <td th:text="${sp.id}"></td>
+            <td th:text="${sp.ten}"></td>
+            <td th:text="${sp.gia}"></td>
+            <td th:text="${sp.conBaoHanh == true ? 'con': 'het'}"></td>
+            <td th:text="${sp.danhMuc != null ? sp.danhMuc.ten : 'Chưa phân loại'}"></td>
+            <td>
+                <!--                    path variable-->
+                <a th:href="@{|/san-pham/view-update/${sp.id}|}">View update</a>
+                <!--                    query param-->
+                <a th:href="@{|/san-pham/xoa?id=${sp.id}|}">Xoa</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+<a th:href="@{|/san-pham/phan-trang?page=0|}">First</a>
+<a th:href="@{|/san-pham/phan-trang?page=${page.isFirst() ? 0 : page.getNumber() -1}|}">Prev</a>
+<a th:href="@{|/san-pham/phan-trang?page=${page.isLast() ? page.getTotalPages() - 1 : page.getNumber() + 1}|}">Next</a>
+<a th:href="@{|/san-pham/phan-trang?page=${page.getTotalPages() -1}|}">Last</a>
+</body>
+</html>

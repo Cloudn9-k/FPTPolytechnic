@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/danh-muc/them" method="post">
+<!--    id: <input type="text" name="id" >-->
+    ten <input type="text" name="ten" >
+    cap do <input type="text" name="capDo" >
+    he so <input type="text" name="heSo">
+    <button>submit</button>
+</form>
+bang danh mục
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>ten</th>
+        <th> cap do</th>
+        <th>he so</th>
+        <th>action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="danhMuc : ${danhSach}">
+        <tr th:object="${danhMuc}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{ten}"></td>
+            <td th:text="*{capDo}"></td>
+            <td th:text="*{heSo}"></td>
+            <td>
+                <a th:href="@{|/danh-muc/view-update/*{id}|}">sửa</a>
+                <a th:href="@{|/danh-muc/delete?id=*{id}|}">xoá</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>

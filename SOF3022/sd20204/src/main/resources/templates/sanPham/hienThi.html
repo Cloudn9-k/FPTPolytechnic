@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Tim kiem:
+<form action="/san-pham/tim-kiem" method="get">
+    Ten: <input type="text" name="ten"> <br>
+    <button>Search</button>
+</form>
+<br>
+<form action="/san-pham/them" method="post" th:object="${sp}">
+    ten <input type="text" th:field="*{ten}">
+    gia: <input type="text" th:field="*{gia}">
+    con bao hanh <input type="radio" th.field="*{conBaoHanh}" value="true">
+    het <input type="radio" th.field="*{conBaoHanh}" value="false">
+    <i th:errors="*{conBaoHanh}"></i>
+    <br>
+    Danh mục:
+    <select th:field="*{danhMuc}">
+        <option value="">vui</option>
+        <th:block th:each="danhMuc : ${listDanhMuc}">
+            <option th:value="${danhMuc.id}" th:text="${danhMuc.ten}"></option>
+        </th:block>
+    </select>
+    <i th:errors="*{danhMuc}"></i>
+    <button>submit</button>
+</form>
+bang sản phẩm
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>tên</th>
+            <th>giá</th>
+            <th>còn bảo hành</th>
+            <th>danh mục</th>
+        </tr>
+    </thead>
+    <tbody>
+        <th:block th:each="sp : ${listSanPham}">
+            <tr>
+                <td th:text="${sp.id}"></td>
+                <td th:text="${sp.ten}"></td>
+                <td th:text="${sp.gia}"></td>
+                <td th:text="${sp.conBaoHanh == true ? 'con': 'het'}"></td>
+                <td th:text="${sp.danhMuc != null ? sp.danhMuc.ten : 'Chưa phân loại'}"></td>
+                <td>
+<!--                    path variable-->
+                    <a th:href="@{|/san-pham/view-update/${sp.id}|}">View update</a>
+<!--                    query param-->
+                    <a th:href="@{|/san-pham/xoa?id=${sp.id}|}">Xoa</a>
+                </td>
+            </tr>
+
+        </th:block>
+    </tbody>
+
+</table>
+</body>
+</html>

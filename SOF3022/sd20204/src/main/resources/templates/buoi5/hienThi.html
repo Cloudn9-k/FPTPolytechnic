@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Them sinh vien:
+    <form action="/buoi5/them" method="post">
+        Id: <input type="text" name="id"> <br>
+        Ten: <input type="text" name="ten"> <br>
+        Diem: <input type="text" name="diem"> <br>
+        Gioi tinh:
+            Nam <input type="radio" name="gioiTinh" value="true">
+            Nu <input type="radio" name="gioiTinh" value="false">
+
+        <br>
+        <button>Submit</button>
+    </form>
+    Bang thong tin:
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ten</th>
+                <th>Diem</th>
+                <th>Gioi tinh</th>
+                <th>Hanh dong</th>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="sinhVien : ${danhSach}">
+                <tr th:object="${sinhVien}">
+                    <td th:text="*{id}"></td>
+                    <td th:text="*{ten}"></td>
+                    <td th:text="*{diem}"></td>
+                    <td th:text="*{gioiTinh == true ? 'nam' : 'nu'}"></td>
+                    <td>
+                        <a th:href="@{|/buoi5/view-update/*{id}|}">View update</a>
+                        <a th:href="@{|/buoi5/delete?id=*{id}|}">Delete</a>
+                    </td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</body>
+</html>

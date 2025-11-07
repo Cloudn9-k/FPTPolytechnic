@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+FORM
+<form action="/kiem/them" method="post">
+    Ma :<input type="text" name="ma" ><br>
+    gia <input type="text" name="gia" id>
+    ten: <input type="text" name="ten" id><br>
+    nam <input type="text" name="namSanXuat">
+    <button>submit</button>
+</form>
+<table>
+    <thead>
+    <th>mã</th>
+    <th>giá</th>
+    <th>tên</th>
+    <th> năm</th>
+    <th>hành động</th>
+    </thead>
+    <tbody>
+    <th:block th:each="mg : ${ds}">
+        <tr th:object="${mg}">
+            <td th:text="*{ma}">Mã</td>
+            <td th:text="*{gia}">giá</td>
+            <td th:text="*{ten}">tên</td>
+            <td th:text="*{namSanXuat}">năm</td>
+            <td>
+                <a href="@{|/kiem/view-update/*{ma}|}">sửa</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>

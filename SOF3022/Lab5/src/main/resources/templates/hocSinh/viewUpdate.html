@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</form>
+form them
+<form action="/hoc-sinh/update" method="post">
+    ten <input type="text" name="id" th:value="${hocSinh.id}"><br>
+    ten <input type="text" name="tenHocSinh" th:value="${hocSinh.tenHocSinh}"><br>
+    tuoi <input type="text" name="tuoi" th:value="${hocSinh.tuoi}"> <br>
+    dang hoc <input type="radio" name="dangHoc" th:checked="${hocSinh.dangHoc}">
+    khong <input type="radio" name="dangHoc" th:checked="${!hocSinh.dangHoc}">
+    <select name="truongHoc">
+        <th:block th:each="th : ${listTruongHoc}">
+            <option th:value="${th.id}" th:text="${th.tenTruong}" th:selected="${th.id == hocSinh.truongHoc.id}"></option>
+        </th:block>
+    </select>
+    <button>submit</button>
+</form>
+</body>
+</html>

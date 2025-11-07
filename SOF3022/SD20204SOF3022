@@ -1,0 +1,143 @@
+@Autowired
+    DonHangRepository donHangRepository;
+    @Autowired
+    SanPhamRepository sanPhamRepository;
+    @ModelAttribute("listSanPham")
+    List<SanPham> getListSanPham(){return sanPhamRepository.findAll();}
+
+    @GetMapping("/hien-thi")
+    public String hienThi(Model model, @ModelAttribute("dh") DonHang donHang) {
+        model.addAttribute("listDonHang", donHangRepository.findAll());
+        return "/De1/hienThi";
+    }
+    @PostMapping("/them")
+    public String them(Model model, @ModelAttribute("dh") @Valid DonHang donHang, Errors errors){
+        if (errors.hasErrors()){
+            return "/De1/hienThi";
+        }
+        donHangRepository.save(donHang);
+        return "redirect:/don-hang/hien-thi";
+    }
+    @GetMapping("/view-update/{id}")
+    public String viewUpdate(@PathVariable("id")Integer id, Model model){
+        model.addAttribute("dh",donHangRepository.findById(id).get());
+        return "/De1/ViewUpdate";
+    }
+    @PostMapping("update")
+    public String update(DonHang donHang){
+        donHangRepository.save(donHang);
+        return "redirect:/don-hang/hien-thi";
+    }
+    @GetMapping("xoa")
+    public String delete(@RequestParam("id") Integer id){
+        donHangRepository.deleteById(id);
+        return "redirect:/don-hang/hien-thi";
+    }
+    @GetMapping("/phan-trang")
+    public String phanTrang(@RequestParam(value = "page",defaultValue = "0", required = false)Integer page, Model model){
+        int pageSize=2;
+        Sort sort = Sort.by(Sort.Direction.DESC,"tenKhachHang");
+        Pageable pageable = PageRequest.of(page, pageSize, sort);
+        model.addAttribute("page",donHangRepository.findAll(pageable));
+        return "/De1/phanTrang";
+    }
+    @GetMapping("/search")
+    public String timKiem(@RequestParam("tenKhachHang") String ten,Model model,@ModelAttribute("dh") DonHang donHang){
+        model.addAttribute("listDonHang",donHangRepository.getDonHangsByTenKhachHangContains(ten));
+        return "/De1/hienThi";
+    }
+USE SD20204SOF3022;
+GO
+CREATE TABLE san_pham(
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    ten NVARCHAR(100) NOT NULL,
+	gia FLOAT,
+	con_bao_hanh BIT, -- 1: con bao hanh, 0: het bao hanh
+	id_danh_muc INT,
+	FOREIGN KEY(id_danh_muc) REFERENCES danh_muc(id)
+)
+GO
+INSERT INTO san_pham
+VALUES 
+	('Quat', 4.4, 1, 1),
+	('PC', 5.4, 0, 2),
+	('Hamburger', 9.2, 0, 3),
+	('Ban hoc', 10.3, 1, 4);
+GO
+select * from san_pham
+delete from san_pham where id = 1002
+
+CREATE TABLE SinhVien (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    ho_ten NVARCHAR(50),
+    tuoi INT,
+    gioi_tinh BIT
+)
+GO
+
+INSERT INTO SinhVien
+VALUES
+(N'Lê Văn Nam', 20, 0),
+(N'Trần Thị Hoa', 21, 1),
+(N'Phạm Quang Dũng', 22, 0),
+(N'Nguyễn Mỹ Linh', 20, 1);
+GO
+
+CREATE TABLE MonHoc (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    ten_mon NVARCHAR(100),
+    so_tin_chi INT,
+    diem_trung_binh FLOAT,
+    id_sinh_vien INT,
+    FOREIGN KEY (id_sinh_vien) REFERENCES SinhVien(id)
+)
+GO
+
+INSERT INTO MonHoc
+VALUES
+(N'Lập trình Java', 3, 8.5, 1),
+(N'Cơ sở dữ liệu', 4, 7.8, 2),
+(N'Web nâng cao', 3, 9.0, 3),
+(N'Phân tích hệ thống', 3, 6.8, 4);
+GO
+USE SD20204SOF3022;
+GO
+-- Tạo bảng truong_hoc
+CREATE TABLE truong_hoc (
+    id INT IDENTITY(41,1) PRIMARY KEY,
+    ten_truong NVARCHAR(100)
+);
+GO
+
+-- Tạo bảng hoc_sinh
+CREATE TABLE hoc_sinh (
+    id INT IDENTITY(41,1) PRIMARY KEY,
+    ten_hoc_sinh NVARCHAR(100),
+    tuoi INT,
+    dang_hoc BIT,
+    truong_id INT FOREIGN KEY REFERENCES truong_hoc(id)
+);
+GO
+
+-- Thêm dữ liệu vào truong_hoc
+INSERT INTO truong_hoc (ten_truong) VALUES
+(N'Trường THPT Chuyên Hà Nội - Amsterdam'),
+(N'Trường THPT Nguyễn Huệ'),
+(N'Trường THPT Lê Quý Đôn'),
+(N'Trường THPT Phan Đình Phùng'),
+(N'Trường THPT Chu Văn An');
+GO
+
+-- Thêm dữ liệu vào hoc_sinh
+INSERT INTO hoc_sinh (ten_hoc_sinh, tuoi, dang_hoc, truong_id) VALUES
+(N'Nguyễn Văn An', 17, 1, 41),
+(N'Lê Thị Bích', 18, 1, 41),
+(N'Trần Quốc Toàn', 17, 1, 42),
+(N'Phạm Hoàng Nam', 18, 0, 42),
+(N'Hoàng Minh Anh', 17, 1, 43),
+(N'Ngô Khánh Linh', 18, 0, 43),
+(N'Vũ Gia Huy', 18, 1, 44),
+(N'Lê Thùy Trang', 17, 1, 44),
+(N'Phạm Minh Châu', 17, 1, 45),
+(N'Đặng Hồng Sơn', 18, 1, 45);
+GO

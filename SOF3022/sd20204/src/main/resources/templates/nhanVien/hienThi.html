@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+form them
+
+<form action="/nhan-vien/them" method="post" th:object="${nhanVien}">
+    ma: <input type="text" th:field="*{maNhanVien}"><br>
+    ten: <input type="text" th:field="*{hoTen}"><br>
+    gioiTinh:
+    nam:<input type="radio" th:field="*{gioiTinh}" value="true">
+    nu: <input type="radio" th:field="*{gioiTinh}" value="false">
+    Sdt <input type="text" th:field="*{soDienThoai}">
+    <i th:errors="*{gioiTinh}"></i>
+    <br>
+    ma chuc vu:
+    <select th:field="*{chucVu.id}">
+        <option value=""> chọn dữ liệu để </option>
+        <th:block th:each="chucVu : ${listChucVu}">
+            <option th:value="${chucVu.id}" th:text="${chucVu.maChucVu}"></option>
+        </th:block>
+    </select>
+    <i th:errors="*{chucVu}"></i>
+    <button> submit</button>
+</form>
+bang san pham
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>mã nhân viên</th>
+            <th>tên nhân viên</th>
+            <th>giới tính</th>
+            <th>sdt</th>
+            <th>mã chức vụ</th>
+            <th>tên chức vụ</th>
+            <th>hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <th:block th:each="nhanVien : ${listNhanVien}">
+            <tr>
+
+                <td th:text="${nhanVien.id}"></td>
+                <td th:text="${nhanVien.maNhanVien}"></td>
+                <td th:text="${nhanVien.hoTen}"></td>
+                <td th:text="${nhanVien.gioiTinh == true ? 'nam' : 'nu'}"></td>
+                <td th:text="${nhanVien.soDienThoai}"></td>
+                <td th:text="${nhanVien.chucVu != null ? nhanVien.chucVu.maChucVu : 'un'}"></td>
+                <td th:text="${nhanVien.chucVu != null ? nhanVien.chucVu.tenChucVu : 'un'}"></td>
+                <td>
+                    <a th:href="@{|/nhan-vien/view-update/${nhanVien.id}|}">view update</a>
+                    <a th:href="@{|/nhan-vien/xoa?id=${nhanVien.id}|}">xoa</a>
+                </td>
+            </tr>
+        </th:block>
+    </tbody>
+</table>
+</body>
+</html>

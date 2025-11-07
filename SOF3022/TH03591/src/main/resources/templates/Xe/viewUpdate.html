@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/xe/update" method="post">
+    id <input type="text" name="id" th:value="${xe.id}"><br>
+    ma xe <input type="text" name="maXe" th:value="${xe.maXe}"><br>
+    ten xe <input type="text" name="tenXe" th:value="${xe.tenXe}"> <br>
+    gia <input type="text" name="gia" th:value="${xe.gia}"> <br>
+    so cho ngoi <input type="text" name="soChoNgoi" th:value="${xe.soChoNgoi}"> <br>
+
+    <select name="loaiXe">
+        <th:block th:each="lx : ${listLoaiXe}">
+            <option th:value="${lx.id}" th:text="${lx.maLoaiXe + lx.tenLoaiXe}"  th:selected="${lx.id == xe.loaiXe.id}"></option>
+        </th:block>
+    </select>
+    <button>update</button>
+</form>
+</body>
+</html>

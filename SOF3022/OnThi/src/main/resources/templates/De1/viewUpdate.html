@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/don-hang/update" method="post">
+  id<input type="text" name="id" th:value="${dh.id}"><br>
+    ten khach hang <input type="text" name="tenKhachHang" th:value="${dh.tenKhachHang}"><br>
+    so luong dat <input type="text" name="soLuongDat" th:value="${dh.soLuongDat}"><br>
+    Trang thai:
+    Con <input type="radio" name="trangThai" th:checked="${dh.trangThai}" value="true">
+    het <input type="radio" name="trangThai" th:checked="${!dh.trangThai}" value="false">
+    <br>
+    <select name="sanPham">
+        <th:block th:each="sp : ${listSanPham}">
+            <option th:value="${sp.id}" th:text="${sp.tenSanPham}" th:selected="${dh.sanPham.id == sp.id}"></option>
+        </th:block>
+    </select>
+    <button>thêm</button>
+
+</form>
+</body>
+</html>

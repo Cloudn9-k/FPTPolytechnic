@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+form search
+<form action="/hoc-sinh/search" method="get">
+    ten <input type="text" name="tenHocSinh" >
+    <button>submit</button>
+</form>
+<br>
+form them
+<form action="/hoc-sinh/them" method="post">
+    ten <input type="text" name="tenHocSinh"><br>
+    tuoi <input type="text" name="tuoi" ><br>
+    dangHoc <input type="radio" name="dangHoc">
+    Vo hoc <input type="radio" name="dangHoc">
+    <select name="truongHoc" >
+        <th:block th:each="th : ${listTruongHoc}">
+            <option th:value="${th.id}" th:text="${th.tenTruong}"></option>
+        </th:block>
+    </select>
+    <button>submit</button>
+</form>
+table
+<table>
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>ten</td>
+        <td>tuoi</td>
+        <td>truong hoc</td>
+        <td>hanhdong</td>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="hocSinh : ${listHocSinh}">
+        <tr th:object="${hocSinh}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{tenHocSinh}"></td>
+            <td th:text="*{tuoi}"></td>
+            <td th:text="*{truongHoc.tenTruong}"></td>
+            <td>
+                <a th:href="@{|/hoc-sinh/view-update/*{id}|}">view update</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+
+</body>
+</html>

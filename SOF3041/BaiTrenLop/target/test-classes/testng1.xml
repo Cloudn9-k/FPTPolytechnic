@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Calculator Suite">
+    <test name="Math Text">
+        <classes>
+            <class name="com.example.SOF3041.CalculatorMathTest"></class>
+        </classes>
+    </test>
+    <test name="Division Test">
+        <classes>
+            <class name="com.example.SOF3041.CalculatorDivisionTest"></class>
+        </classes>
+    </test>
+</suite>

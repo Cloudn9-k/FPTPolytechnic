@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <td>id</td>
+            <td>ma xe</td>
+            <td>ten xe</td>
+            <td>gia</td>
+            <td>số chỗ ngồi</td>
+            <td>mã loại xe</td>
+            <td>tên loại xe</td>
+        </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="xe : ${listXe}">
+        <tr th:object="${xe}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{maXe}"></td>
+            <td th:text="*{tenXe}"></td>
+            <td th:text="*{gia}"></td>
+            <td th:text="*{soChoNgoi}"></td>
+            <td th:text="*{loaiXe.maLoaiXe}"></td>
+            <td th:text="*{loaiXe.tenLoaiXe}"></td>
+            <td>
+                <a th:href="@{|/xe/view-update/*{id}|}">view update</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>

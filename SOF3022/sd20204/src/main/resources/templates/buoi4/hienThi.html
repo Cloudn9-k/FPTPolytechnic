@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>Truy xuat gia tri bien cach 1:</p>
+    <ul>
+        <li th:text="${sinhVien.id}"></li>
+        <li th:text="${sinhVien.ten}"></li>
+        <li th:text="${sinhVien.diem}"></li>
+    </ul>
+    <p>Truy xuat gia tri bien cach 2:</p>
+    <ul th:object="${sinhVien}">
+        <li th:text="*{id}"></li>
+        <li th:text="*{ten}"></li>
+        <li th:text="*{diem}"></li>
+    </ul>
+    <p>Tao link <a th:href="@{/buoi4/{x}(x=${sinhVien.id})}">Cach 1</a></p>
+    <p>Tao link <a th:href="@{|/buoi4/${sinhVien.id}|}">Cach 2</a></p>
+</body>
+</html>
