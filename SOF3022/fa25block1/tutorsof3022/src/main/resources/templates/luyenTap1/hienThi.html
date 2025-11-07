@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<br>
+Form them
+<form action="/sinh-vien/them" method="post">
+    ten: <input type="text" name="hoTen" ><br>
+    tuoi: <input type="text" name="tuoi" ><br>
+    gioiTinh:
+    <input type="radio" name="gioiTinh">
+    <input type="radio" name="gioiTinh">
+    <button>submit</button>
+</form>
+table
+<table>
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>tên</td>
+            <td>tuổi</td>
+            <td>giới tính</td>
+            <td>action</td>
+        </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="sinhVien : ${listSinhVien}">
+        <tr th:object="${sinhVien}">
+            <td th:text="*{id}"></td><br>
+            <td th:text="*{hoTen}"></td><br>
+            <td th:text="*{tuoi}"></td><br>
+            <td th:text="*{gioiTinh == true ? 'nam' : 'nu'}"></td><br>
+            <td>
+                <a th:href="@{|/sinh-vien/view-update/*{id}|}"> sửa</a>
+                <a th:href="@{|/sinh-vien/xoa?id=*{id}|}">xoá</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>

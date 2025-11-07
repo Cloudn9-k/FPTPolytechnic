@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  Sua tai san:
+  <form action="/tai-san/sua" method="post">
+    Id: <input type="text" name="id" th:value="${taiSan.id}"> <br>
+    Ten: <input type="text" name="ten" th:value="${taiSan.ten}"> <br>
+    Nam san xuat: <input type="text" name="namSanXuat" th:value="${taiSan.namSanXuat}"> <br>
+    Gia: <input type="text" name="gia" th:value="${taiSan.gia}"> <br>
+    Nhan vien:
+    <select name="nhanVien">
+      <th:block th:each="nv : ${listNhanVien}">
+        <option th:value="${nv.id}" th:text="${nv.ten}" th:selected="${nv.id == taiSan.nhanVien.id}"></option>
+      </th:block>
+    </select>
+    <br>
+    <button>Submit</button>
+  </form>
+</body>
+</html>

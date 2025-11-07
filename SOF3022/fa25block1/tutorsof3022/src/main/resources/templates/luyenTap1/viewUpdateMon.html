@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/mon-hoc/update" method="post">
+    Id <input type="text" name="id" th:value="${monHoc.id}"><br>
+    ten mon <input type="text" name="tenMon" th:value="${monHoc.tenMon}"><br>
+    so tin chi <input type="text" name="soTinChi" th:value="${monHoc.soTinChi}"><br>
+    <select name="sinhVien">
+        <th:block th:each="sv : ${listSinhVien}">
+            <option th:value="${sv.id}" th:text="${sv.hoTen}" th:selected="${sv.id == monHoc.sinhVien.id}"></option>
+        </th:block>
+    </select>
+    <button>submit</button>
+</form>
+</body>
+</html>

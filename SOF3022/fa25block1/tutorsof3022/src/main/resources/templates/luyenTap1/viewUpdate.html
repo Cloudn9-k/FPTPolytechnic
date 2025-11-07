@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Form them
+<form action="/sinh-vien/update" method="post">
+    id <input type="text" name="id" th:value="${sinhVien.id}"><br>
+    ten: <input type="text" name="hoTen" th:value="${sinhVien.hoTen}"><br>
+    tuoi: <input type="text" name="tuoi" th:value="${sinhVien.tuoi}" ><br>
+    gioiTinh:
+    <input type="radio" name="gioiTinh" th:checked="${sinhVien.gioiTinh}">
+    <input type="radio" name="gioiTinh" th:checked="${!sinhVien.gioiTinh}">
+    <button>submit</button>
+</form>
+</body>
+</html>

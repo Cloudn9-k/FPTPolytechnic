@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Thong tin tai san:
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Ten</th>
+        <th>Nam san xuat</th>
+        <th>Gia</th>
+        <th>Nhan vien</th>
+        <th>Hanh dong</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="ts : ${page.getContent}">
+        <tr th:object="${ts}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{ten}"></td>
+            <td th:text="*{namSanXuat}"></td>
+            <td th:text="*{gia}"></td>
+            <td th:text="*{nhanVien.ten}"></td>
+            <td>
+                <a th:href="@{|/tai-san/view-update/*{id}|}">View update</a>
+                <a th:href="@{|/tai-san/xoa?id=*{id}|}">Xoa</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+<a th:href="@{|/tai-san/phan-trang?page=0|}">First</a>
+<a th:href="@{|/tai-san/phan-trang?page=${page.isFirst() ? 0 : page.getNumber() -1}|}">Prev</a>
+<a th:href="@{|/tai-san/phan-trang?page=${page.isLast() ? page.getTotalPages() - 1 : page.getNumber() + 1}|}">Next</a>
+<a th:href="@{|/tai-san/phan-trang?page=${page.getTotalPages() -1}|}">Last</a>
+</body>
+</html>

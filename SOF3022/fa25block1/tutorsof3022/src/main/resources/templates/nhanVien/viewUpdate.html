@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  Update nhan vien:
+  <form action="/nhan-vien/update" method="post">
+    Id: <input type="text" name="id" th:value="${nhanVien.id}"> <br>
+    Ten: <input type="text" name="ten" th:value="${nhanVien.ten}"> <br>
+    Luong: <input type="text" name="luong" th:value="${nhanVien.luong}"> <br>
+    Gioi tinh:
+    Nam: <input type="radio" name="gioiTinh" value="false" th:checked="${!nhanVien.gioiTinh}">
+    Nu: <input type="radio" name="gioiTinh" value="true" th:checked="${nhanVien.gioiTinh}">
+    <br>
+    <button>Submit</button>
+  </form>
+</body>
+</html>

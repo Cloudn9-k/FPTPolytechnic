@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Search
+<form action="/tai-san/search" method="get">
+    ten <input type="text" name="ten">
+    <button>submit</button>
+</form>
+    Them tai san:
+    <form action="/tai-san/them" method="post">
+        Ten: <input type="text" name="ten"> <br>
+        Nam san xuat: <input type="text" name="namSanXuat"> <br>
+        Gia: <input type="text" name="gia"> <br>
+        Nhan vien:
+        <select name="nhanVien">
+            <th:block th:each="nv : ${listNhanVien}">
+                <option th:value="${nv.id}" th:text="${nv.ten}"></option>
+            </th:block>
+        </select>
+        <br>
+        <button>Submit</button>
+    </form>
+    Thong tin tai san:
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Ten</th>
+            <th>Nam san xuat</th>
+            <th>Gia</th>
+            <th>Nhan vien</th>
+            <th>Hanh dong</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="ts : ${listTaiSan}">
+            <tr th:object="${ts}">
+                <td th:text="*{id}"></td>
+                <td th:text="*{ten}"></td>
+                <td th:text="*{namSanXuat}"></td>
+                <td th:text="*{gia}"></td>
+                <td th:text="*{nhanVien.hoTen}"></td>
+                <td>
+                    <a th:href="@{|/tai-san/view-update/*{id}|}">View update</a>
+                    <a th:href="@{|/tai-san/xoa?id=*{id}|}">Xoa</a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</body>
+</html>

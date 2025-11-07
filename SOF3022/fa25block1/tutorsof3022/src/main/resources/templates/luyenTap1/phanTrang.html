@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+table
+<table>
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>ten môn</td>
+        <td>gia</td>
+        <td>sinh viên</td>
+        <td>action</td>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="monHoc : ${page.getContent}">
+        <tr th:object="${monHoc}">
+            <td th:text="*{id}"></td><br>
+            <td th:text="*{tenMon}"></td><br>
+            <td th:text="*{soTinChi}"></td><br>
+            <td th:text="*{sinhVien.hoTen}"></td><br>
+            <td>
+                <a th:href="@{|/mon-hoc/view-update/*{id}|}">view update</a>
+                <a th:href="@{|/mon-hoc/xoa?id=*{id}|}">xoa</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+<a th:href="@{|/mon-hoc/phan-trang?page=0|}">First</a>
+<a th:href="@{|/mon-hoc/phan-trang?page=${page.isFirst() ? 0 : page.getNumber() -1}|}">Prev</a>
+<a th:href="@{|/mon-hoc/phan-trang?page=${page.isLast() ? page.getTotalPages() - 1 : page.getNumber() + 1}|}">Next</a>
+<a th:href="@{|/mon-hoc/phan-trang?page=${page.getTotalPages() -1}|}">Last</a>
+</body>
+</html>

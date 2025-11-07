@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+form search
+<form action="/mon-hoc/search" method="get">
+    ten: <input type="text" name="tenMon">
+    <button>submit</button>
+</form>
+<br>
+form
+<form action="/mon-hoc/them" method="post">
+    ten mon <input type="text" name="tenMon" ><br>
+    so tin chi <input type="text" name="soTinChi" ><br>
+    <select name="sinhVien">
+        <th:block th:each="sv : ${listSinhVien}">
+            <option th:value="${sv.id}" th:text="${sv.hoTen}"></option>
+        </th:block>
+    </select>
+    <button>submit</button>
+</form>
+table
+<table>
+    <thead>
+
+            <td>id</td>
+            <td>ten môn</td>
+            <td>gia</td>
+            <td>sinh viên</td>
+            <td>action</td>
+
+    </thead>
+    <tbody>
+    <th:block th:each="monHoc : ${listMonHoc}">
+        <tr th:object="${monHoc}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{tenMon}"></td>
+            <td th:text="*{soTinChi}"></td>
+            <td th:text="*{sinhVien.hoTen}"></td>
+            <td>
+                <a th:href="@{|/mon-hoc/view-update/*{id}|}">view update</a>
+                <a th:href="@{|/mon-hoc/xoa?id=*{id}|}">xoa</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>
