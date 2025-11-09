@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+</head>
+<body>
+<div>
+  <div>
+    <h1 th:text="${message}">Đây là trang dành cho admin</h1>
+  </div>
+
+  <div th:replace="/auth/user_info :: userInfo"></div>
+  <hr>
+  <a href="/">Quay về trang chủ</a>
+</div>
+</body>
+</html>

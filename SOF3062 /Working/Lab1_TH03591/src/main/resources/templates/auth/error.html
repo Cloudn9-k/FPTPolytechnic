@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lỗi Hệ Thống</title>
+</head>
+<body>
+<div>
+    <div>
+        <div>
+            <h3>Rất tiếc, đã có lỗi hệ thống xảy ra!</h3>
+        </div>
+        <div>
+
+            <h5  th:text="${errorMessage}">
+                Hệ thống đang gặp sự cố. Vui lòng thử lại sau.
+            </h5>
+
+            <p>Chi tiết lỗi (debug):</p>
+            <pre th:text="${errorDetail}"></pre>
+
+            <a href="/">Quay về Trang chủ</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

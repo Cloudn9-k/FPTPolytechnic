@@ -35,13 +35,11 @@ public class AppConfig {
         // Bỏ cors
         http.csrf(AbstractHttpConfigurer::disable);
         http.cors(AbstractHttpConfigurer::disable);
-
-        // Khối authorize
+        // Khối authorize (ĐÃ SỬA ĐỔI)
         http.authorizeHttpRequests(auth -> {
-                    // SỬA: Cho phép tất cả các trang /auth/ (form, check, failure, exit)
                     auth.requestMatchers("/auth/**").permitAll();
+                    auth.requestMatchers("/poly/admin").hasRole("ADMIN");
                     auth.requestMatchers("/poly/**").authenticated();
-                    // SỬA: Phân quyền admin chặt chẽ hơn
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
                     auth.requestMatchers("/user/**").hasAnyRole("ADMIN", "USER",  "BOTH");
                     auth.anyRequest().permitAll();
@@ -49,10 +47,9 @@ public class AppConfig {
         );
         // Cấu hình navigation
         http.formLogin(config -> {
-            // SỬA 1: Trang login phải khớp với LoginController (case "form")
-            config.loginPage("/auth/form");
+            config.loginPage("/auth/login");
             config.loginProcessingUrl("/auth/check");
-            // SỬA 2: Bỏ 'true' để cho phép quay lại trang cũ (ví dụ: /poly/url1)
+            // mặc định khi chưa đnhap
             config.defaultSuccessUrl("/");
             config.failureForwardUrl("/auth/failure");
             config.permitAll();
@@ -60,14 +57,14 @@ public class AppConfig {
             config.passwordParameter("password");
         });
 
-        // Ghi nhớ đăng nhập (Giữ nguyên)
+        // Ghi nhớ đăng nhập
         http.rememberMe(config -> {
             config.tokenValiditySeconds(3*24*60*60);
             config.rememberMeParameter("remember-me");
             config.rememberMeCookieName("remember-me");
         });
 
-        // Cấu hình logout (Giữ nguyên)
+        // Cấu hình logout
         http.logout(config -> {
             config.logoutUrl("/auth/logout");
             config.logoutSuccessUrl("/auth/exit");
@@ -75,6 +72,12 @@ public class AppConfig {
             config.invalidateHttpSession(true);
             config.deleteCookies();
             config.permitAll();
+        });
+        // exception khi kco quyền
+        http.exceptionHandling(ex -> {
+            ex.accessDeniedHandler((request, response, accessDeniedException) -> {
+                response.sendRedirect("/auth/fail");
+            });
         });
         return http.build();
     }

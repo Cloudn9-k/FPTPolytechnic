@@ -26,6 +26,10 @@ public class LoginController {
                 model.addAttribute("message", "Đăng xuất thành công");
                 yield "/auth/login";
             }
+            case "fail" -> {
+                model.addAttribute("message", "bạn không có quyền truy cập");
+                yield "/auth/fail";
+            }
             default -> "/auth/login";
         };
     }
