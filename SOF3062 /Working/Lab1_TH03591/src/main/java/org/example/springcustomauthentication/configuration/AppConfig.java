@@ -23,7 +23,6 @@ public class AppConfig {
     }
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder pe) {
-
         String password = pe.encode("123");
         UserDetails user1 = User.withUsername("user@gmail.com").password(password).roles("USER").build();
         UserDetails user2 = User.withUsername("admin@gmail.com").password(password).roles("ADMIN").build();

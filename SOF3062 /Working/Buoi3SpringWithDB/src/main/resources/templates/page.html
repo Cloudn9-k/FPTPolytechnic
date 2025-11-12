@@ -5,7 +5,7 @@
     <title>Document</title>
 </head>
 <body>
-<a href="/static"> trang chủ</a>
+<a href="/"> trang chủ</a>
 <a href="/poly/url0">url 1</a> |
 <a href="/poly/url1">2</a> |
 <a href="/poly/url2">3</a> |
@@ -16,7 +16,7 @@
 <h1> Page: <b th:text="${message}"></b></h1>
 <hr>
 
-<div th:replace="/auth/user_info :: userInfo"></div>
+<div th:replace="~{/user_info.html}"></div>
 
 </body>
 </html>

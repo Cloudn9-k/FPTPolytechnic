@@ -1,12 +1,14 @@
-package com.example.buoi3springwithdb.service;
+package com.example.buoi4.service;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Stream;
 
-public class AuthService {
+@Service("auth")
+public class AuthenticationService {
     public Authentication getAuthentication() {
         return SecurityContextHolder.getContext().getAuthentication();
     }
@@ -24,5 +26,6 @@ public class AuthService {
     public boolean hasAnyRole(String... rolesToCheck) {
         var grantedRoles = this.getRoles();
         return Stream.of(rolesToCheck).anyMatch(grantedRoles::contains);
+
     }
 }

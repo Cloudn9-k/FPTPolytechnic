@@ -12,12 +12,12 @@
             <li>Role: <b th:text="${@auth.roles}"></b></li>
             <li><a href="/auth/logout">Đăng xuất</a></li>
             <li th:if="${@auth.hasAnyRole('ADMIN')}">
-                <a href="#">Go to Administration</a>
+                <a href="/poly/admin">Go to Administration</a>
             </li>
         </ul>
         <ul th:case="false">
             <li>Bạn chưa đăng nhập.</li>
-            <li><a href="/auth/form">Đăng nhập</a></li>
+            <li><a href="/auth/login">Đăng nhập</a></li>
         </ul>
     </div>
 </div>
