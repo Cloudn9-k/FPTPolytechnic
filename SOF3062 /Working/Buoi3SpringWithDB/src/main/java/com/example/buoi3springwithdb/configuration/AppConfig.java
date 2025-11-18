@@ -2,6 +2,7 @@ package com.example.buoi3springwithdb.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
@@ -19,6 +20,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true)
 public class AppConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -36,10 +38,10 @@ public class AppConfig {
         http.csrf(AbstractHttpConfigurer::disable);
         http.cors(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(authorizeRequests ->{
-            authorizeRequests.requestMatchers("/poly/url1").authenticated();
-            authorizeRequests.requestMatchers("/poly/url2").hasRole("USER");
-            authorizeRequests.requestMatchers("/poly/url3").hasRole("ADMIN");
-            authorizeRequests.requestMatchers("/poly/url4").hasAnyRole("ADMIN","USER");
+//            authorizeRequests.requestMatchers("/poly/url1").authenticated();
+//            authorizeRequests.requestMatchers("/poly/url2").hasRole("USER");
+//            authorizeRequests.requestMatchers("/poly/url3").hasRole("ADMIN");
+//            authorizeRequests.requestMatchers("/poly/url4").hasAnyRole("ADMIN","USER");
             authorizeRequests.anyRequest().permitAll();
         });
         http.formLogin(AbstractAuthenticationFilterConfigurer::permitAll);
