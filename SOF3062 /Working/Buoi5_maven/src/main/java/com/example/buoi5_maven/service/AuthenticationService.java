@@ -1,10 +1,11 @@
-package com.example.buoi5_maven.service;
+package com.example.buoi5_maven.service; // Nhớ sửa package
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service("auth")
@@ -12,20 +13,22 @@ public class AuthenticationService {
     public Authentication getAuthentication() {
         return SecurityContextHolder.getContext().getAuthentication();
     }
-    // bản thân Spring security đã cung cấp pthuc này và cả cái form rồi
     public String getUsername() {
-        return getAuthentication().getName();
+        Authentication auth = getAuthentication();
+        if (auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal())) {
+            return auth.getName();
+        }
+        return "Khách";
     }
-    // Giả sử rằng String s ="Role_Admin" nên lấy ra chuỗi ADMIN
-    // Lấy ra bộ vai trò được quản lý ởi Spring Security
     public List<String> getRoles() {
-        return this.getAuthentication().getAuthorities().stream().map(
-                authority
-                        -> authority.getAuthority().substring(5)).toList();
+        Authentication auth = getAuthentication();
+        if (auth == null || !auth.isAuthenticated()) return List.of();
+        return auth.getAuthorities().stream()
+                .map(a -> a.getAuthority())
+                .collect(Collectors.toList());
     }
-    public boolean hasAnyRole(String... rolesToCheck) {
-        var grantedRoles = this.getRoles();
-        return Stream.of(rolesToCheck).anyMatch(grantedRoles::contains);
-
+    public boolean hasAnyRole(String... roles) {
+        List<String> currentRoles = getRoles();
+        return Stream.of(roles).anyMatch(r -> currentRoles.contains("ROLE_" + r));
     }
 }

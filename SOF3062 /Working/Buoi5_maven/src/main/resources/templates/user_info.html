@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thông tin User</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        a { display: block; margin: 5px 0; color: blue; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .msg { color: red; font-weight: bold; border: 1px solid red; padding: 10px; display: inline-block;}
+    </style>
+</head>
+<body>
+
+<h2>LAB 3 - DEMO PHÂN QUYỀN</h2>
+
+<div th:if="${message}" class="msg">
+    <span th:text="${message}"></span>
+</div>
+
+<hr>
+
+<div th:fragment="userInfo">
+    <div th:switch="${@auth.getAuthentication() != null && !@auth.getAuthentication().name.equals('anonymousUser')}">
+        <div th:case="true">
+            <p>Xin chào: <b th:text="${@auth.getUsername()}"></b></p>
+            <p>Quyền hạn: <b th:text="${@auth.getRoles()}"></b></p>
+            <br>
+            <b>--- MENU TEST ---</b>
+            <a href="/poly/url1">1. URL 1 USER || ADMIN</a>
+            <a href="/poly/url2">2. USER</a>
+            <a href="/poly/url3">3. ADMIN</a>
+            <br>
+            <a href="/auth/logout" style="color: brown;">[ Đăng xuất ]</a>
+        </div>
+
+        <div th:case="false">
+            <p>Bạn chưa đăng nhập.</p>
+            <a href="/auth/login" style="font-weight: bold;">>> BẤM VÀO ĐÂY ĐỂ ĐĂNG NHẬP <<</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
