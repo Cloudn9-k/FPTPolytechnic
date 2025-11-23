@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <title>Quan ly sinh vien - Simple</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<h3>Quan ly sinh vien</h3>
+
+<div>
+    Id: <input id="id">
+    <br>
+    Full Name: <input id="name" style="width:320px">
+</div>
+
+<div style="margin-top:8px;">
+    Everage Mark: <input id="mark">
+    <br>
+    Gender:
+    <label><input type="radio" name="gender" value="true" checked> Male</label>
+    <label><input type="radio" name="gender" value="false"> Female</label>
+</div>
+
+<div style="margin-top:10px;">
+    <button onclick="getStudent()">Danh sach</button>
+    <button onclick="postStudent()">Them</button>
+    <button onclick="putStudent()">Cap nhat</button>
+    <button onclick="deleteStudent()">Xoa</button>
+    <button onclick="resetForm()">Reset</button>
+</div>
+
+<input id="key" type="hidden">
+
+<table border="1" cellpadding="6" cellspacing="0" style="margin-top:12px; border-collapse:collapse; width:100%;">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Mark</th>
+        <th>Gender</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody id="listStudentTable"></tbody>
+</table>
+
+<ul id="log"></ul>
+
+<script>
+    function log(t) {
+        const ul = document.getElementById("log");
+        const li = document.createElement("li");
+        li.textContent = t;
+        ul.prepend(li);
+    }
+
+    function getStudent() {
+        axios.get("https://lab4-bai3-default-rtdb.asia-southeast1.firebasedatabase.app/sinhvien.json")
+            .then(function (response) {
+                const data = response.data;
+                const tbody = document.getElementById("listStudentTable");
+                tbody.innerHTML = "";
+                if (!data) {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = '<td colspan="5" style="text-align:center">Khong co sinh vien nao!</td>';
+                    tbody.appendChild(tr);
+                    return;
+                }
+                Object.keys(data).forEach(function (key) {
+                    const s = data[key];
+                    const tr = document.createElement("tr");
+                    tr.innerHTML =
+                        "<td>" + (s.id || "") + "</td>" +
+                        "<td>" + (s.name || "") + "</td>" +
+                        "<td>" + (s.mark != null ? s.mark : "") + "</td>" +
+                        "<td>" + (s.gender ? "Nam" : "Nu") + "</td>" +
+                        "<td>" +
+                        "<a href=\"#\" onclick=\"editStudent('" + key + "')\">Edit</a> | " +
+                        "<a href=\"#\" onclick=\"deleteStudentByKey('" + key + "')\">Delete</a>" +
+                        "</td>";
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(function (error) {
+                log("Loi doc danh sach: " + error);
+            });
+    }
+
+    function postStudent() {
+        const student = {
+            id: document.getElementById("id").value,
+            name: document.getElementById("name").value,
+            mark: document.getElementById("mark").value,
+            gender: document.querySelector('input[name="gender"]:checked').value === "true"
+        };
+        axios.post("https://lab4-bai3-default-rtdb.asia-southeast1.firebasedatabase.app/sinhvien.json", student)
+            .then(function (response) {
+                log("Them thanh cong: " + JSON.stringify(response.data));
+                getStudent();
+            })
+            .catch(function (error) {
+                log("Loi post: " + error);
+            });
+    }
+
+    function putStudent() {
+        const key = document.getElementById("key").value;
+        const student = {
+            id: document.getElementById("id").value,
+            name: document.getElementById("name").value,
+            mark: document.getElementById("mark").value,
+            gender: document.querySelector('input[name="gender"]:checked').value === "true"
+        };
+        axios.put(`https://lab4-bai3-default-rtdb.asia-southeast1.firebasedatabase.app/sinhvien/${key}.json`, student)
+            .then(function (response) {
+                log("Cap nhat thanh cong");
+                getStudent();
+                getStudentById();
+            })
+            .catch(function (error) {
+                log("Loi put: " + error);
+            });
+    }
+
+    function deleteStudent() {
+        const key = document.getElementById("key").value;
+        axios.delete(`https://lab4-bai3-default-rtdb.asia-southeast1.firebasedatabase.app/sinhvien/${key}.json`)
+            .then(function (response) {
+                log("Xoa thanh cong");
+                getStudent();
+                const tbody = document.getElementById("singleStudentTable");
+                if (tbody) tbody.innerHTML = "";
+            })
+            .catch(function (error) {
+                log("Loi delete: " + error);
+            });
+    }
+
+    function editStudent(key) {
+        axios.get(`https://lab4-bai3-default-rtdb.asia-southeast1.firebasedatabase.app/sinhvien/${key}.json`)
+            .then(function (response) {
+                const s = response.data;
+                document.getElementById("id").value = s.id || "";
+                document.getElementById("name").value = s.name || "";
+                document.getElementById("mark").value = s.mark != null ? s.mark : "";
+                document.querySelector('input[name="gender"][value="' + (s.gender ? "true" : "false") + '"]').checked = true;
+                document.getElementById("key").value = key; // <- IMPORTANT: set the key so update/delete work
+            })
+            .catch(function (error) {
+                log("Loi edit load: " + error);
+            });
+    }
+
+    function deleteStudentByKey(key) {
+        axios.delete(`https://lab4-bai3-default-rtdb.asia-southeast1.firebasedatabase.app/sinhvien/${key}.json`)
+            .then(function (response) {
+                log("Xoa thanh cong key: " + key);
+                getStudent();
+            })
+            .catch(function (error) {
+                log("Loi delete by key: " + error);
+            });
+    }
+
+    function resetForm() {
+        document.getElementById("id").value = "";
+        document.getElementById("name").value = "";
+        document.getElementById("mark").value = "";
+        document.querySelector('input[name="gender"][value="true"]').checked = true;
+        document.getElementById("key").value = "";
+    }
+</script>
+</body>
+</html>
