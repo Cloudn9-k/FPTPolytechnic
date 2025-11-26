@@ -44,14 +44,46 @@ public class HttpURLController {
     public String HttpURLPost() throws IOException {
         var url ="https://realtimedb-fc6d9-default-rtdb.firebaseio.com/student.json";
         var connection =(HttpURLConnection) new URL(url).openConnection();
-        connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+        connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
         connection.setRequestMethod("POST");
         //3 dau nhay doi la cu phap json
         var postData = """
-                {"id":"sv111","name":"sinhvien07"};
+                {"id":"sv111","name":"sinhvien07"}
                 """;
         connection.setDoOutput(true);// khi goi post thi se output ket qua
         connection.getOutputStream().write(postData.getBytes());
+        if (connection.getResponseCode() == 200) {
+            String data = readFromStream(connection.getInputStream());
+            System.out.println(data);
+        }
+        connection.disconnect();
+        return "index";
+    }
+    @GetMapping("/put")
+    public String HttpURLPut() throws IOException {
+        var url ="https://realtimedb-fc6d9-default-rtdb.firebaseio.com/student/-OeQ3UW9kG51AYQWXJ11.json";
+        var connection =(HttpURLConnection) new URL(url).openConnection();
+        connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
+        connection.setRequestMethod("PUT");
+        //3 dau nhay doi la cu phap json
+        var putData = """
+                {"id":"sv112","name":"sinhvien08"}
+                """;
+        connection.setDoOutput(true);// khi goi post thi se output ket qua
+        connection.getOutputStream().write(putData.getBytes());
+        if (connection.getResponseCode() == 200) {
+            String data = readFromStream(connection.getInputStream());
+            System.out.println(data);
+        }
+        connection.disconnect();
+        return "index";
+    }
+    @GetMapping("/delete")
+    public String HttpURLDelete() throws IOException {
+        var url ="https://realtimedb-fc6d9-default-rtdb.firebaseio.com/student/-Oe_RT4I8ZmtbeFSuilm.json";
+        var connection =(HttpURLConnection) new URL(url).openConnection();
+        connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
+        connection.setRequestMethod("DELETE");
         if (connection.getResponseCode() == 200) {
             String data = readFromStream(connection.getInputStream());
             System.out.println(data);
