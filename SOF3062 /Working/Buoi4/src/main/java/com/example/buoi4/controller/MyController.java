@@ -41,18 +41,4 @@ public class MyController {
         model.addAttribute("message", "Đây là trang dành cho admin");
         return "page";
     }
-//    // --- SỬA ĐỔI: THÊM PHƯƠNG THỨC NÀY ĐỂ GÂY LỖI ---
-//    @RequestMapping("/poly/test-error")
-//    public String testError(Model model) {
-//
-//        // GIẢ LẬP LỖI 500: Cố tình thực hiện 1 phép chia cho 0
-//        // Điều này sẽ ném ra một ArithmeticException
-//        // Chúng ta KHÔNG đặt try-catch ở đây
-//        int result = 10 / 0;
-//
-//        // Dòng code này sẽ không bao giờ được chạy
-//        model.addAttribute("message", "Không thể tới đây");
-//        return "auth/page";
-//    }
-
 }

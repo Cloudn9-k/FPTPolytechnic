@@ -31,10 +31,15 @@ public class AppConfig {
     }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // Bỏ cors
+        /*
+         Bỏ cors
+        Mặc định Spring bật cái này để chống tấn công giả mạo form.
+        Tuy nhiên, khi làm Lab hoặc API đơn giản,
+         ta tắt đi để tránh lỗi 403 khi submit form mà thiếu token CSRF.
+        */
         http.csrf(AbstractHttpConfigurer::disable);
+        //Chia sẻ tài nguyên chéo. Tắt để các domain khác gọi vào không bị chặn
         http.cors(AbstractHttpConfigurer::disable);
-        // Khối authorize (ĐÃ SỬA ĐỔI)
         http.authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/auth/**").permitAll();
                     auth.requestMatchers("/poly/admin").hasRole("ADMIN");

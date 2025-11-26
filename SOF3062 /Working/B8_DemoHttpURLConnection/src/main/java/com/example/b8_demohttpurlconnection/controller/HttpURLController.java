@@ -13,12 +13,12 @@ import static com.example.b8_demohttpurlconnection.utils.StreamUtils.readFromStr
 @Controller
 public class HttpURLController {
     //get all
-    @GetMapping("get-all")
+    @GetMapping("/get-all")
     public String getAll() throws IOException {
         var url ="https://realtimedb-fc6d9-default-rtdb.firebaseio.com/student.json";
         var connection =(HttpURLConnection) new URL(url).openConnection();
         connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
-        connection.setRequestProperty("GET");
+        connection.setRequestMethod("GET");
         if (connection.getResponseCode() == 200) {
             String data = readFromStream(connection.getInputStream());
             System.out.println(data);
@@ -26,4 +26,38 @@ public class HttpURLController {
         connection.disconnect();
         return "index";
     }
+    // k khasc gi, thay key vao thoi
+    @GetMapping("/get-by-key")
+    public String getAllByKey() throws IOException {
+        var url ="https://realtimedb-fc6d9-default-rtdb.firebaseio.com/student/-OeQ3UW9kG51AYQWXJ11.json";
+        var connection =(HttpURLConnection) new URL(url).openConnection();
+        connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+        connection.setRequestMethod("GET");
+        if (connection.getResponseCode() == 200) {
+            String data = readFromStream(connection.getInputStream());
+            System.out.println(data);
+        }
+        connection.disconnect();
+        return "index";
+    }
+    @GetMapping("/create")
+    public String HttpURLPost() throws IOException {
+        var url ="https://realtimedb-fc6d9-default-rtdb.firebaseio.com/student.json";
+        var connection =(HttpURLConnection) new URL(url).openConnection();
+        connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+        connection.setRequestMethod("POST");
+        //3 dau nhay doi la cu phap json
+        var postData = """
+                {"id":"sv111","name":"sinhvien07"};
+                """;
+        connection.setDoOutput(true);// khi goi post thi se output ket qua
+        connection.getOutputStream().write(postData.getBytes());
+        if (connection.getResponseCode() == 200) {
+            String data = readFromStream(connection.getInputStream());
+            System.out.println(data);
+        }
+        connection.disconnect();
+        return "index";
+    }
+
 }

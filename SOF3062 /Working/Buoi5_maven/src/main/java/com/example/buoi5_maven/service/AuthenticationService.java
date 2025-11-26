@@ -1,5 +1,4 @@
-package com.example.buoi5_maven.service; // Nhớ sửa package
-
+package com.example.buoi5_maven.service;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

@@ -4,13 +4,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice
+@ControllerAdvice // lỗi vào đây hết - tự làm trang lỗi
 public class GlobalException {
-    /**
-     * @ExceptionHandler(Exception.class) giống như: catch(Exception ex) { ... }
-     * * Nó sẽ bắt TẤT CẢ các lỗi (Exception.class) mà các controller ném ra
-     * mà không được xử lý (unhandled) ở đâu khác.
-     */
     @ExceptionHandler(Exception.class)
     public String handleGlobalException(Exception ex, Model model) {
         ex.printStackTrace();

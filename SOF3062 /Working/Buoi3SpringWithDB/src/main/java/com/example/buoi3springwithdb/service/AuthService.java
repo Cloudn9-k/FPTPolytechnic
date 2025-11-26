@@ -15,7 +15,7 @@ public class AuthService {
         return getAuthentication().getName();
     }
     // Giả sử rằng String s ="Role_Admin" nên lấy ra chuỗi ADMIN
-    // Lấy ra bộ vai trò được quản lý ởi Spring Security
+    // Lấy ra bộ vai trò được quản lý ởi Spring Secursity
     public List<String> getRoles() {
         return this.getAuthentication().getAuthorities().stream().map(
                 authority

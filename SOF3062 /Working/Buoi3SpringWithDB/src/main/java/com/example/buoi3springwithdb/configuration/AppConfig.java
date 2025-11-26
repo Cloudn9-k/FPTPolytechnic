@@ -34,14 +34,9 @@ public class AppConfig {
     }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // Bỏ cors
         http.csrf(AbstractHttpConfigurer::disable);
         http.cors(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(authorizeRequests ->{
-//            authorizeRequests.requestMatchers("/poly/url1").authenticated();
-//            authorizeRequests.requestMatchers("/poly/url2").hasRole("USER");
-//            authorizeRequests.requestMatchers("/poly/url3").hasRole("ADMIN");
-//            authorizeRequests.requestMatchers("/poly/url4").hasAnyRole("ADMIN","USER");
             authorizeRequests.anyRequest().permitAll();
         });
         http.formLogin(AbstractAuthenticationFilterConfigurer::permitAll);

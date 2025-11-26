@@ -21,7 +21,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = true)
+@EnableMethodSecurity(prePostEnabled = true)// Kích hoạt tính năng @PreAuthorize ở Controller
 public class AppConfig {
 
     @Bean
@@ -38,7 +38,7 @@ public class AppConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {// Tắt bảo mật form/ajax
         http.csrf(AbstractHttpConfigurer::disable).cors(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
         http.formLogin(config -> {
@@ -54,7 +54,6 @@ public class AppConfig {
             config.loginPage("/auth/login");
             config.defaultSuccessUrl("/", true);
             config.failureUrl("/auth/login");
-
             // Logic login Google
             config.successHandler((request, response, authentication) -> {
                 DefaultOidcUser oidcUser = (DefaultOidcUser) authentication.getPrincipal();
