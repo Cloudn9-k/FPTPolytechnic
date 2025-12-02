@@ -1,65 +1,56 @@
 package com.example.buoi11_resttemplateapi.controller;
 
 import com.example.buoi11_resttemplateapi.entity.Student;
-import com.example.buoi11_resttemplateapi.service.StudentService;
+import com.example.buoi11_resttemplateapi.repository.StudentDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+import java.util.Optional;
 
-@CrossOrigin(origins ={ "http://localhost:8080" , "https://127.0.0.1:8080"})
+@CrossOrigin("*") // Cho phép Web Form gọi API
 @RestController
+@RequestMapping("/api/student")
 public class StudentRestController {
+
     @Autowired
-    StudentService studentService;
-    Map<String, Student> map = new HashMap<>();
-    @GetMapping("/api/student")
-    public ResponseEntity<Map<String,Student>> getAllStudents() {
-        Map<String, Student> students = studentService.getAllStudent();
-        return ResponseEntity.ok(students);
-    }
-    @GetMapping("/api/student/{key}")
-    public ResponseEntity<Student> getStudent(@PathVariable String key) {
-        Student student = studentService.getByKey(key);
-        if (student != null) {
-            return ResponseEntity.ok(student);
-        }
-        return ResponseEntity.notFound().build();
-    }
-    @PostMapping("/api/student")
-    public ResponseEntity<String> createStudent(@RequestBody Student student) {
-        String key = studentService.create(student);
-        if (key != null) {
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body("create student with key" + key);
+    StudentDao dao; // Sử dụng trực tiếp DAO [cite: 351]
 
-        }else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("failure to create");
-        }
+    // 1. Lấy tất cả sinh viên
+    @GetMapping
+    public ResponseEntity<List<Student>> findAll() {
+        return ResponseEntity.ok(dao.findAll()); // [cite: 383, 385]
     }
-    @PutMapping("/api/student/{key}")
-    public ResponseEntity<String> updateStudent(@PathVariable String key, @RequestBody Student student) {
-        try{
-            studentService.update(student, key);
-            return ResponseEntity.ok("update student with key" + key);
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("update student with key" + e.getMessage());
-        }
-    }
-    @DeleteMapping("/api/update/{key}")
-    public ResponseEntity<String> deleteStudent(@PathVariable String key) {
-        try {
-            studentService.delete(key);
-            return ResponseEntity.ok("delete student with key" + key);
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("delete student with key" + e.getMessage());
-        }
-    }
-    // đây là chúng ta viết theo kiểu chúng ta sdung @ ở mức phương thức, nên chuyển API lên đầu là đc
 
+    // 2. Lấy 1 sinh viên theo ID
+    @GetMapping("/students/{id}")
+    public ResponseEntity<Student> findById(@PathVariable("id") String id) {
+        if(!dao.existsById(id)) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(dao.findById(id).get()); // [cite: 387, 389]
+    }
+
+    // 3. Thêm mới sinh viên
+    @PostMapping
+    public ResponseEntity<Student> create(@RequestBody Student student) {
+        if(dao.existsById(student.getId())) {
+            return ResponseEntity.badRequest().build(); // Trùng ID thì báo lỗi
+        }
+        return ResponseEntity.ok(dao.save(student)); // [cite: 391, 393]
+    }
+
+    // 4. Cập nhật sinh viên
+    @PutMapping("/{id}")
+    public ResponseEntity<Student> update(@PathVariable("id") String id, @RequestBody Student student) {
+        if(!dao.existsById(id)) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(dao.save(student)); // [cite: 396, 398]
+    }
+
+    // 5. Xóa sinh viên
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") String id) {
+        if(!dao.existsById(id)) return ResponseEntity.notFound().build();
+        dao.deleteById(id); // [cite: 400, 403]
+        return ResponseEntity.ok().build();
+    }
 }

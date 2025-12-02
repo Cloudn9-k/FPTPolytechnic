@@ -1,16 +1,19 @@
 package com.example.buoi11_resttemplateapi.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.stereotype.Service;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "J6Students") // [cite: 288]
 public class Student {
-    private String id;
-    private String name;
+    @Id
+    private String id;      // [cite: 328]
+    private String name;    // [cite: 329]
+    private Double mark;    // [cite: 331]
+    private Boolean gender; // [cite: 330]
 }
