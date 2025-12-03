@@ -29,8 +29,8 @@ public class RestController {
     public Student update(@PathVariable String id, @RequestBody Student student) {
         return studentService.update(student);
     }
-    @DeleteMapping("/students{id}")
-    public void delete(@RequestBody String id) {
+    @DeleteMapping("/students/{id}")
+    public void delete(@PathVariable String id) { // Đổi thành @PathVariable
         studentService.delete(id);
     }
 }

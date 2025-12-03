@@ -30,10 +30,13 @@ public class SecurityConfig {
     }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, CorsConfigurationSource corsConfigurationSource) throws Exception {
-        http.cors(cors->cors.configurationSource(corsConfigurationSource))
-                .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .anyRequest().permitAll()
-                        .requestMatchers("/students","/students/**").permitAll());
+        http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/students/**").permitAll() // Cho phép tất cả vào link students
+                        .anyRequest().permitAll() // Các link khác cũng cho phép hết (cho đơn giản)
+                );
         return http.build();
     }
 }
