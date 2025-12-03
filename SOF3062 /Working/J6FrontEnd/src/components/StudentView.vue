@@ -1,43 +1,66 @@
 <script setup>
 import { ref } from 'vue';
-
-// Khai báo các biến theo hướng dẫn của thầy
 const form = ref({});
 const list = ref([
-    // Dữ liệu giả để test giao diện trước khi có API
     { id: 1, name: "Nguyễn Văn A", gender: true, mark: 9 },
     { id: 2, name: "Trần Thị B", gender: false, mark: 8 }
 ]);
 const host = "http://localhost:8080";
-
-// Định nghĩa đối tượng controller chứa các hàm xử lý
 const ctrl = {
     init() {
-        console.log("Hàm init() đã chạy");
+        this.load();
+        this.init();
     },
     reset() {
-        console.log("Hàm reset()");
-        form.value = {};
+        form.value = {id: '', name: '', gender: true, mark: 5.0};
     },
     load() {
-        console.log("Hàm load()");
+        var url = `${host}/students`;
+        axios.get(url).then(resp => {
+            list.value = resp.data;
+        }).catch(err => {
+            console.log("Lỗi load dữ liệu:", err);
+        });
     },
-    edit(item) {
-        console.log("Hàm edit()", item);
-        form.value = { ...item }; // Copy dữ liệu lên form
+    edit(entity) {
+        form.value = { ...entity };
+        var url = `${host}/students/${entity.id}`;
+        axios.get(url).then(resp => {
+            form.value = resp.data;
+        }).catch(err => {
+            console.log("Lỗi load dữ liệu:", err);
+        });
     },
     create() {
-        console.log("Hàm create()");
+        var entity = Object.assign({}, form.value);
+        var url = `${host}/students`;
+        axios.post(url, entity).then(resp => {
+            this.load();
+            this.reset();
+        }).catch(err => {
+            console.log("Lỗi tạo mới:", err);
+        });
     },
     update() {
-        console.log("Hàm update()");
+        var entity = Object.assign({}, form.value);
+        var url = `${host}/students/${entity.id}`;
+        axios.put(url, entity).then(resp => {
+            this.load();
+            this.reset();
+        }).catch(err => {
+            console.log("Lỗi cập nhật:", err);
+        });
     },
-    delete(item) {
-        console.log("Hàm delete()", item);
+    delete(entity) {
+        var url = `${host}/students/${entity.id}`;
+        axios.delete(url).then(resp => {    
+            this.load();
+            this.reset();
+        }).catch(err => {
+            console.log("Lỗi xóa:", err);
+        });
     }
 }
-
-// Gọi hàm khởi tạo
 ctrl.init();
 </script>
 
