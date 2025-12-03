@@ -54,7 +54,7 @@ public class AppConfig {
                         .anyRequest().permitAll()
                 );
 
-        // [cite: 157] Thêm filter JWT
+        //Thêm filter JWT
         http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }

@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Service
 public class JwtService {
-    // [cite: 78] Secret key phải đủ dài (>32 bytes) cho HS256
+    //Secret key phải đủ dài (>32 bytes) cho HS256
     private static final String SECRET = "0123456789.0123456789.0123456789.0123456789";
 
     private Key getSigningKey() {
@@ -22,7 +22,7 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    // [cite: 46] Tạo token
+    // Tạo token
     public String createJwt(UserDetails user, int expiredSeconds) {
         long now = System.currentTimeMillis();
         return Jwts.builder()
@@ -34,7 +34,7 @@ public class JwtService {
                 .compact();
     }
 
-    // [cite: 59] Lấy body (claims) từ token
+    //Lấy body (claims) từ token
     public Claims getBodyFromJwt(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
@@ -43,7 +43,7 @@ public class JwtService {
                 .getBody();
     }
 
-    // [cite: 70] Kiểm tra hạn token
+    //Kiểm tra hạn token
     public boolean validate(Claims claims) {
         return claims.getExpiration().after(new Date());
     }

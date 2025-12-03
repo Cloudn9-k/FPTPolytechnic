@@ -26,11 +26,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        // [cite: 96] Kiểm tra context
+        // Kiểm tra context
         if (SecurityContextHolder.getContext().getAuthentication() == null) {
             String authorization = request.getHeader("Authorization");
 
-            // [cite: 97] Kiểm tra header Authorization
+            //Kiểm tra header Authorization
             if (authorization != null && authorization.startsWith("Bearer ")) {
                 String token = authorization.substring(7).trim();
                 try {
@@ -40,7 +40,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                         String username = claims.getSubject();
                         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-                        // [cite: 108] Thiết lập Authentication vào SecurityContext
+                        //Thiết lập Authentication vào SecurityContext
                         var auth = new UsernamePasswordAuthenticationToken(
                                 userDetails, null, userDetails.getAuthorities());
                         SecurityContextHolder.getContext().setAuthentication(auth);
@@ -50,8 +50,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 }
             }
         }
-
-        // QUAN TRỌNG: Cho phép request đi tiếp
         filterChain.doFilter(request, response);
     }
 }

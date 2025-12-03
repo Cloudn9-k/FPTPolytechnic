@@ -21,19 +21,19 @@ public class LoginRestApi {
     @Autowired
     private JwtService jwtService;
 
-    // [cite: 180] API Login
+    //API Login
     @PostMapping("/poly/login")
     public Object login(@RequestBody Map<String, String> userInfo) {
         String username = userInfo.get("username");
         String password = userInfo.get("password");
 
-        // [cite: 186] Xác thực user
+        // Xác thực user
         var authInfo = new UsernamePasswordAuthenticationToken(username, password);
         var authentication = authenticationManager.authenticate(authInfo);
 
         if (authentication.isAuthenticated()) {
             UserDetails user = (UserDetails) authentication.getPrincipal();
-            // [cite: 192] Tạo token có hạn 20 phút
+            //Tạo token có hạn 20 phút
             String token = jwtService.createJwt(user, 20 * 60);
             return Map.of("token", token);
         }
