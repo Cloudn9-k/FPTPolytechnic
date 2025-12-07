@@ -1,0 +1,60 @@
+use java61
+CREATE TABLE J6Students(
+    Id VARCHAR(50) NOT NULL PRIMARY KEY,
+    Name NVARCHAR(50) NOT NULL,
+    Mark FLOAT NOT NULL,
+    Gender BIT NOT NULL
+);
+
+INSERT INTO J6Students VALUES('SV001', N'Lý Thái Tổ', 9.5, 1);
+INSERT INTO J6Students VALUES('SV002', N'Lê Trọng Tấn', 4.5, 1);
+INSERT INTO J6Students VALUES('SV003', N'Nguyễn Thị Minh Khai', 9.5, 0);
+INSERT INTO J6Students VALUES('SV004', N'Đoàn Trung Trực', 6.0, 1);
+
+CREATE TABLE Students (
+    id NVARCHAR(50) NOT NULL PRIMARY KEY,
+    name NVARCHAR(100) NOT NULL,
+    gender BIT, -- 1: Nam (true), 0: Nữ (false)
+    mark FLOAT
+);
+GO
+
+-- 4. Chèn dữ liệu mẫu (Mock Data)
+INSERT INTO Students (id, name, gender, mark) VALUES 
+(N'SV01', N'Nguyễn Văn An', 1, 9.5),
+(N'SV02', N'Trần Thị Bích', 0, 8.0),
+(N'SV03', N'Lê Văn Cường', 1, 7.5),
+(N'SV04', N'Phạm Thị Dung', 0, 6.0),
+(N'SV05', N'Hoàng Văn Em', 1, 4.5),
+(N'SV06', N'Đỗ Thị Hoa', 0, 8.8);
+GO
+
+CREATE TABLE Categories (
+    id NVARCHAR(50) PRIMARY KEY,
+    name NVARCHAR(100) NOT NULL
+);
+GO
+CREATE TABLE Products (
+    id INT IDENTITY(1,1) PRIMARY KEY, -- Id tự tăng
+    name NVARCHAR(100) NOT NULL,
+    price FLOAT,
+    create_date DATE,
+    category_id NVARCHAR(50) REFERENCES Categories(id) -- Khóa ngoại
+);
+GO
+CREATE TABLE Accounts (
+    username NVARCHAR(50) PRIMARY KEY,
+    password NVARCHAR(100),
+    fullname NVARCHAR(100),
+    email NVARCHAR(100),
+    photo NVARCHAR(200),
+    activated BIT, -- Trạng thái
+    admin BIT -- Vai trò: 1 là Admin, 0 là User
+);
+INSERT INTO Categories (id, name) VALUES (N'DT', N'Điện thoại'), (N'LT', N'Laptop');
+INSERT INTO Products (name, price, create_date, category_id) VALUES 
+(N'iPhone 15', 25000000, '2023-10-20', N'DT'),
+(N'MacBook Pro', 40000000, '2023-11-01', N'LT');
+INSERT INTO Accounts (username, password, fullname, email, activated, admin) VALUES
+(N'admin', N'123', N'Quản trị viên', N'admin@fpt.edu.vn', 1, 1),
+(N'user', N'123', N'Nguyễn Văn User', N'user@fpt.edu.vn', 1, 0);

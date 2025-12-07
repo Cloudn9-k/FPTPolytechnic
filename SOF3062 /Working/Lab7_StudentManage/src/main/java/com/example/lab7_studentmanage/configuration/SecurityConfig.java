@@ -34,6 +34,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/poly/**").permitAll()
                         .requestMatchers("/students/**").permitAll() // Cho phép tất cả vào link students
                         .anyRequest().permitAll() // Các link khác cũng cho phép hết (cho đơn giản)
                 );
