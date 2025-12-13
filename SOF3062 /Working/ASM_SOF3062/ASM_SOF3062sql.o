@@ -1,0 +1,78 @@
+USE ASM_SOF3062;
+GO
+
+-- 1. XÓA BẢNG CŨ (Theo thứ tự Con -> Cha để tránh lỗi FK)
+IF OBJECT_ID('OrderDetails', 'U') IS NOT NULL DROP TABLE OrderDetails;
+IF OBJECT_ID('Orders', 'U') IS NOT NULL DROP TABLE Orders;
+IF OBJECT_ID('Products', 'U') IS NOT NULL DROP TABLE Products;
+IF OBJECT_ID('Categories', 'U') IS NOT NULL DROP TABLE Categories;
+IF OBJECT_ID('Accounts', 'U') IS NOT NULL DROP TABLE Accounts;
+GO
+
+-- 2. TẠO BẢNG MỚI (Đã thêm Long ID cho Account)
+
+-- Bảng Accounts: Thêm id tự tăng, username thành unique
+CREATE TABLE Accounts (
+    id BIGINT IDENTITY(1,1) PRIMARY KEY,
+    username NVARCHAR(50) NOT NULL UNIQUE,
+    password NVARCHAR(100) NOT NULL,
+    fullname NVARCHAR(100) NOT NULL,
+    email NVARCHAR(100) NOT NULL,
+    photo NVARCHAR(200),
+    activated BIT DEFAULT 1, 
+    admin BIT DEFAULT 0 
+);
+
+-- Bảng Categories
+CREATE TABLE Categories (
+    id NVARCHAR(50) PRIMARY KEY,
+    name NVARCHAR(100) NOT NULL
+);
+
+-- Bảng Products
+CREATE TABLE Products (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    name NVARCHAR(100) NOT NULL,
+    image NVARCHAR(200),
+    price FLOAT NOT NULL,
+    create_date DATE DEFAULT GETDATE(),
+    available BIT DEFAULT 1,
+    category_id NVARCHAR(50) REFERENCES Categories(id)
+);
+
+-- Bảng Orders: Sửa tham chiếu sang Account(id) thay vì username
+CREATE TABLE Orders (
+    id BIGINT IDENTITY(1,1) PRIMARY KEY,
+    account_id BIGINT REFERENCES Accounts(id), -- Link theo ID
+    create_date DATETIME DEFAULT GETDATE(),
+    address NVARCHAR(200) NOT NULL
+);
+ALTER TABLE Orders ADD status NVARCHAR(50) DEFAULT 'Pending';
+-- 3. DATA MẪU
+INSERT INTO Categories VALUES ('DH', N'Đồng hồ'), ('MT', N'Máy tính');
+
+-- Pass 123
+INSERT INTO Accounts (username, password, fullname, email, admin) VALUES 
+('admin', '123', N'Quản trị viên', 'admin@fpt.edu.vn', 1),
+('user', '123', N'Nguyễn Văn User', 'user@fpt.edu.vn', 0);
+
+INSERT INTO Products (name, price, category_id, image) VALUES 
+(N'Rolex Fake', 1000, 'DH', 'dh.jpg'), 
+(N'Dell XPS', 2000, 'MT', 'lt.jpg');
+
+UPDATE Accounts SET password = '{noop}123';
+
+-- 3. Tạo lại bảng với tên chuẩn 'order_details' (Có dấu gạch dưới)
+CREATE TABLE order_details (
+    id BIGINT IDENTITY(1,1) PRIMARY KEY,
+    
+    -- Khóa ngoại trỏ về bảng Orders
+    order_id BIGINT REFERENCES Orders(id),
+    
+    -- Khóa ngoại trỏ về bảng Products
+    product_id INT REFERENCES Products(id),
+    
+    price FLOAT,
+    quantity INT
+);
+GO
