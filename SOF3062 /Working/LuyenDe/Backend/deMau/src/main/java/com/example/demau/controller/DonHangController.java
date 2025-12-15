@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/don-hang")
+@CrossOrigin(origins = "http://localhost:5173")
 public class DonHangController {
     @Autowired
     DonHangService donHangService;
@@ -23,7 +24,6 @@ public class DonHangController {
     public List<DonHangResponse> phanTrang(@RequestParam Integer page){
        int pageSize = 5;
        return donHangService.phanTrang(page,pageSize);
-
     }
     @PostMapping("/add")
     public void add(@RequestBody @Valid DonHangRequest request) {

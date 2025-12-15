@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+// hay quên @Service nè
 @Service
 public class DonHangService {
     @Autowired
@@ -21,7 +22,7 @@ public class DonHangService {
         return donHangRepository.findAll().stream().map(DonHangResponse::new).toList();
     }
     public List<DonHangResponse> phanTrang(Integer id, Integer pageSize){
-        Pageable pageable = PageRequest.of(pageSize,pageSize);
+        Pageable pageable = PageRequest.of(id,pageSize);
         return donHangRepository.findAll(pageable).getContent().stream().map(DonHangResponse::new).toList();
     }
     public void add(DonHangRequest donHangRequest) {
@@ -30,12 +31,17 @@ public class DonHangService {
         donHangRepository.save(donHang);
     }
     public void update(DonHangRequest donHangRequest) {
-        DonHang donHang = new DonHang();
+        DonHang donHang = donHangRepository.findById(donHangRequest.getId())
+                .orElseThrow(() -> new ApiException("404", "Không tìm thấy đơn hàng cần sửa"));
         BeanUtils.copyProperties(donHangRequest, donHang);
         donHangRepository.save(donHang);
     }
     public void delete(Integer id) {
-        donHangRepository.findById(id).orElseThrow(()-> new ApiException("noID","khong tim thay id"));
+        if(!donHangRepository.existsById(id)){
+            throw new ApiException("noID", "khong tim thay id");
+        }
+        donHangRepository.deleteById(id);
+
     }
 
 }

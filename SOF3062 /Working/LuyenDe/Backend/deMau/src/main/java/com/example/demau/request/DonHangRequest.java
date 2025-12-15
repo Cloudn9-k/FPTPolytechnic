@@ -3,7 +3,9 @@ package com.example.demau.request;
 import com.example.demau.entity.KhachHang;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 
+@Data
 public class DonHangRequest {
     private Integer id;
     @NotBlank(message = "don hang id k dc de trong")
